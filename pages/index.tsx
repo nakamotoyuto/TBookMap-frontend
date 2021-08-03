@@ -4,10 +4,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import styles from '../src/styles/Home.module.css'
 
-export default function Home(props) {
-  const { article } = props
-  const [articles, setArticle] = useState([])
-
+export default function Home() {
   return (
     <div>
       <Head>
@@ -21,14 +18,4 @@ export default function Home(props) {
       </>
     </div>
   )
-}
-
-export const getStaticProps = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts")
-  const article = await res.json()
-  return {
-    props: {
-      article
-    }
-  }
 }
