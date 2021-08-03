@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from "next/link"
 import { useState } from 'react'
 import { useEffect } from 'react'
-import styles from '../src/styles/Home.module.css'
+import { Btn } from '../src/components/atoms/Button'
 
 export default function Home() {
   return (
@@ -15,6 +15,7 @@ export default function Home() {
 
       <>
         TODO: home
+        <Btn />
       </>
     </div>
   )
