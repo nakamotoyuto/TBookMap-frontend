@@ -1,5 +1,5 @@
+import { Button } from '@chakra-ui/react'
 import React from 'react'
-import { Btn } from '../atoms/Button'
 
 export const BookRequestButton = () => {
   const openRequestModal = () => {
@@ -7,7 +7,7 @@ export const BookRequestButton = () => {
   }
   return (
     <div>
-      <Btn title="本リクエスト" clickEvent={openRequestModal} />
+      <Button backgroundColor={`#EB7F31`} color={`#ffffff`} onClick={openRequestModal} >本リクエスト</Button>
     </div>
   )
 }

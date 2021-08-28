@@ -1,19 +1,19 @@
-import React from 'react'
-import { Btn } from '../atoms/Button'
+import React, { useState } from 'react'
 import { ModalBox, useModal } from '../modules/Modal'
 import { AuthContent } from './modalInner/AuthContent'
+import { Button, useDisclosure } from "@chakra-ui/react"
 
 export const LoginButton = () => {
-  const { modal, modalOpen, modalClose } = useModal()
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const openLoginModal = () => {
-    console.log('test')
-    modalOpen()
+    onOpen()
   }
+
   return (
     <div>
-      <Btn title="ログイン" clickEvent={openLoginModal} />
-      <ModalBox modal={modal} close={modalClose} maxWidth="400px">
-        <AuthContent modalClose={modalClose} />
+      <Button backgroundColor={`#EB7F31`} color={`#ffffff`} onClick={openLoginModal}>ログイン</Button>
+      <ModalBox modal={isOpen} maxWidth="500px" modalClose={onClose}>
+        <AuthContent modalClose={onClose} />
       </ModalBox>
     </div>
   )

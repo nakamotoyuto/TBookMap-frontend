@@ -1,8 +1,9 @@
+import { Box, Heading, Image } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from "next/link"
-import { Btn } from '../src/components/atoms/Button'
+import { BookAll } from '../src/components/organisms/BookAll'
 import { Header } from '../src/components/organisms/Header'
-
+import Kv from '../src/components/organisms/Kv'
 export default function Home() {
   return (
     <div>
@@ -12,6 +13,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-    </div>
+      <Box p={16} d="flex" flexDirection="column" alignItems="center" maxW="765px" w="100%" margin="0 auto">
+        <Kv />
+        <BookAll />
+      </Box>
+    </div >
   )
 }
