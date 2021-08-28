@@ -2,10 +2,10 @@ import React from 'react'
 import { css, jsx } from '@emotion/react'
 
 type Props = {
-  title: string
-  backgroundColor?: string,
+  title: string;
+  backgroundColor?: string;
   maxWidth?: number;
-  clickEvent?: VoidFunction
+  clickEvent?: VoidFunction;
 }
 
 export const Button = (props: Props) => {
