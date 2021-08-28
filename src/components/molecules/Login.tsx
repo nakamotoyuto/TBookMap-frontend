@@ -68,7 +68,7 @@ export const Login = (props: Props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl>
           <ModalBody>
-            <div css={InputBox}>
+            <Box w={"100%"} mb={`30px`} d="flex" flexDirection="column" gap="10px" textAlign="left" fontSize="18px" fontBold="bold">
               <FormLabel htmlFor="email">emailaddress</FormLabel>
               <Input
                 id="email"
@@ -81,8 +81,8 @@ export const Login = (props: Props) => {
               />
               {errors.email && errors.email.type === "required" && <span css={spanAlert} role="alert">必須項目になります</span>}
               {errors.email && errors.email.type === "pattern" && <span css={spanAlert} role="alert">メールアドレスの形式が間違っています</span>}
-            </div>
-            <div css={InputBox}>
+            </Box>
+            <Box w={"100%"} mb={`30px`} d="flex" flexDirection="column" gap="10px" textAlign="left" fontSize="18px" fontBold="bold">
               <FormLabel htmlFor="password">password</FormLabel>
               <Input
                 id="password"
@@ -95,7 +95,7 @@ export const Login = (props: Props) => {
               />
               {errors.password && errors.password.type === "required" && <span css={spanAlert} role="alert">必須項目になります</span>}
               {errors.password && errors.password.type === "pattern" && <span css={spanAlert} role="alert">半角英数字で入力お願いします</span>}
-            </div>
+            </Box>
           </ModalBody>
           <ModalFooter>
             <Button maxWidth={250} mr={3} backgroundColor={`#EB7F31`} color={`#ffffff`}>ログイン</Button>
