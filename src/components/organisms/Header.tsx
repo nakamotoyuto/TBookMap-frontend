@@ -1,8 +1,10 @@
+import Image from 'next/image'
 import { Box, Heading } from '@chakra-ui/react'
-import { css, jsx } from '@emotion/react'
 import React from 'react'
 import { BookRequestButton } from '../molecules/BookRequestButton'
 import { LoginButton } from '../molecules/LoginButton'
+import search from '../../../public/img/svg/search.svg'
+import myicon from '../../../public/img/svg/myicon.svg'
 
 export const Header = () => {
   return (
@@ -11,8 +13,8 @@ export const Header = () => {
         sansaku
       </Heading>
       <Box d={"flex"} alignItems={"center"} gap={"0 10px"}>
-        <img src={`/img/svg/search.svg`} />
-        <img src={`/img/svg/myicon.svg`} />
+        <Image src={search}/>
+        <Image src={myicon} />
         <LoginButton />
         <BookRequestButton />
       </Box>
