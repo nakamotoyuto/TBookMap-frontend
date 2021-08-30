@@ -13,7 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Box p={16} d="flex" flexDirection="column" alignItems="center" maxW="765px" w="100%" margin="0 auto">
+      <Box p={{base: 8, md:16}} d="flex" flexDirection="column" alignItems="center" maxW="765px" w="100%" margin="0 auto">
         <Kv />
         <BookAll />
       </Box>
