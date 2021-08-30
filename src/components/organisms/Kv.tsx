@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { Box, SimpleGrid, Icon, Text, Stack, Flex } from '@chakra-ui/react';
+import { Box, SimpleGrid, Icon, Text, Stack, Flex, useMediaQuery } from '@chakra-ui/react';
 import { FcReading, FcDonate, FcRating } from 'react-icons/fc';
 
 interface FeatureProps {
@@ -9,6 +9,7 @@ interface FeatureProps {
 }
 
 const Feature = ({ title, text, icon }: FeatureProps) => {
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)")
   return (
     <Stack>
       <Flex
@@ -23,7 +24,8 @@ const Feature = ({ title, text, icon }: FeatureProps) => {
         {icon}
       </Flex>
       <Text fontWeight={600}>{title}</Text>
-      <Text color={'gray.600'}>{text}</Text>
+      {/* {isLargerThan768 && <Text color={'gray.600'}>{text}</Text>} */}
+      <Text color={'gray.600'}>{text}</Text>s
     </Stack>
   );
 };
@@ -41,7 +43,7 @@ export default function KvColumns() {
         />
         <Feature
           icon={<Icon as={FcDonate} w={10} h={10} />}
-          title={'Unlimited Donations'}
+          title={'お金ください'}
           text={
             'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...'
           }
