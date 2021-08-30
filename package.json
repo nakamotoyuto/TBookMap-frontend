@@ -19,9 +19,9 @@
     "recoil": "^0.4.1"
   },
   "devDependencies": {
-    "@emotion/babel-preset-css-prop": "^11.2.0",
-    "@emotion/react": "^11.4.1",
-    "@emotion/styled": "^11.3.0",
+    "@emotion/babel-preset-css-prop": "11.2.0",
+    "@emotion/react": "11.4.1",
+    "@emotion/styled": "11.3.0",
     "@types/react": "17.0.19",
     "@types/react-modal": "^3.12.1",
     "eslint": "7.32.0",
