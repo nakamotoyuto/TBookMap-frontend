@@ -5,6 +5,7 @@ import { BookRequestButton } from '../molecules/BookRequestButton'
 import { LoginButton } from '../molecules/LoginButton'
 import search from '../../../public/img/svg/search.svg'
 import myicon from '../../../public/img/svg/myicon.svg'
+import { css } from '@emotion/react'
 
 export const Header = () => {
   return (
@@ -12,7 +13,7 @@ export const Header = () => {
       <Heading as="h1">
         sansaku
       </Heading>
-      <Box d={"flex"} alignItems={"center"} gap={"0 10px"}>
+      <Box d={"flex"} alignItems={"center"} css={css`gap:0 10px;`}>
         <Image src={search}/>
         <Image src={myicon} />
         <LoginButton />
