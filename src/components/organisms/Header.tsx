@@ -19,8 +19,8 @@ export const Header = () => {
         sansaku
       </Heading>
       <Box d={{ base: "none", md: "flex" }} alignItems={"center"} css={css`gap:0 10px;`}>
-        <Image src={search}/>
-        <Image src={myicon} />
+        <Image src={search} alt="検索ボタン"/>
+        <Image src={myicon} alt="マイページボタン"/>
         <LoginButton />
         <BookRequestButton />
       </Box>
