@@ -4,5 +4,6 @@ export enum RecoilAtomKeys {
 }
 ​
 export enum RecoilSelectorKeys {
-  USER_USERS = 'user_users'
+  USER_USERS = 'user_users',
+  USER_ISLOGIN = 'user_isLogin'
 }
