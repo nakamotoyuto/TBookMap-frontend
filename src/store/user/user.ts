@@ -1,4 +1,4 @@
-import { atom, selector, useRecoilState, useRecoilValue } from "recoil";
+import { atom, selector, useRecoilCallback, useRecoilValue } from "recoil";
 import { RecoilAtomKeys, RecoilSelectorKeys } from "../Recoilkeys";
 
 type User = {
@@ -17,6 +17,10 @@ type IsLogin = {
 type UserSelectors = {
   useUser: () => User
   useIsLogin: () => IsLogin
+}
+
+type LoginActions = {
+  useLoginUser: () => (data: User) => void
 }
 
 const userState = atom<User>({
@@ -38,15 +42,30 @@ const isLoginstate = atom<IsLogin>({
   }
 })
 
+// ユーザー
 const userSelector = selector<User>({
   key: RecoilSelectorKeys.USER_USERS,
   get: ({ get }) => get(userState)
 })
-
+// ログイン状態
 const isLoginSelector = selector<IsLogin>({
   key: RecoilSelectorKeys.USER_ISLOGIN,
   get: ({ get }) => get(isLoginstate)
 })
+
+//ログインできた時のuserのステートを更新するactions
+export const LoginActions = {
+  useLoginUser: () =>
+    useRecoilCallback(({ set }) => (data: User) => {
+      set(userState, (prev) => {
+        const loginUser: User = data
+        return {
+          ...prev,
+          userState: loginUser
+        }
+      })
+    }, [])
+}
 ​
 export const userSelectors:  UserSelectors = {
   useUser: () => useRecoilValue(userSelector),
