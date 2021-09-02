@@ -1,6 +1,10 @@
 import { Button, FormControl, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, Input, FormLabel, Box, FormErrorMessage } from '@chakra-ui/react';
-import React from 'react'
+import { isLocalURL } from 'next/dist/shared/lib/router/router';
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { LoginActions } from '../../../store/user/user';
+import { loginAuth } from './auth';
+import Cookies from 'js-cookie'
 
 type loginFormInput = {
   email: string,
@@ -14,11 +18,31 @@ type Props = {
 
 export const Login = (props: Props) => {
   const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm<loginFormInput>();
-  const onSubmit = (data: loginFormInput) => {
-    console.log('test')
-    console.log(errors)
-    // reset()
-    // props.modalClose()
+  const [isLoging, setIsLoading] = useState<boolean>(false)
+  const loginAction = LoginActions.useLoginUser()
+  useEffect(() => {
+    return () => {
+      setIsLoading(false)
+    }
+  }, [])
+  const onSubmit = async (data: loginFormInput) => {
+    setIsLoading(true)
+    loginAuth(data)
+      .then(function (response) {
+        if (response.status === 200) {
+          loginAction.isLogin(true)
+          loginAction.user(response.data.data)
+          Cookies.set('sansakuToken', response.data.data.token)
+          setIsLoading(false)
+          props.modalClose()
+          return
+        }
+      })
+      .catch(function (err) {
+        setIsLoading(false)
+        console.log(err)
+      })
+    reset()
   }
   return (
     <Box p={4}>
@@ -59,7 +83,7 @@ export const Login = (props: Props) => {
             </FormControl>
           </ModalBody>
           <ModalFooter>
-            <Button type="submit" maxWidth={250} mr={3} backgroundColor={`#EB7F31`} color={`#ffffff`}>ログイン</Button>
+            <Button isLoading={isLoging} type="submit" maxWidth={250} mr={3} backgroundColor={`#EB7F31`} color={`#ffffff`}>ログイン</Button>
             <Button onClick={props.modalClose}>Close</Button>
           </ModalFooter>
       </form>
