@@ -1132,7 +1132,7 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.0.6.tgz#023d72a5c4531b4ce204528971700a78a85a0c50"
   integrity sha512-Myxw//kzromB9yWgS8qYGuGVf91oBUUJpNvy5eM50sqvmKLbKjwLxohJnkWGTeeI9v9IBMtPLxz5Gc60FIfvCA==
 
-"@types/js-cookie@^2.2.7":
+"@types/js-cookie@2.2.7":
   version "2.2.7"
   resolved "https://registry.yarnpkg.com/@types/js-cookie/-/js-cookie-2.2.7.tgz#226a9e31680835a6188e887f3988e60c04d3f6a3"
   integrity sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==
@@ -1164,7 +1164,7 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
-"@types/react-modal@^3.12.1":
+"@types/react-modal@3.12.1":
   version "3.12.1"
   resolved "https://registry.yarnpkg.com/@types/react-modal/-/react-modal-3.12.1.tgz#fd1558762ed96020291b831190c85bc721aad3c1"
   integrity sha512-pgq/jAnSJqHX7NXTFyUSXwlFOBUGngBXavFmAIKE7bkM7WNKyF/9XvmMr2+eIBOvR8waiA0Nj2qHfDZqMgeT6w==
@@ -1425,7 +1425,7 @@ axe-core@^4.0.2:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.3.1.tgz#0c6a076e4a1c3e0544ba6a9479158f9be7a7928e"
   integrity sha512-3WVgVPs/7OnKU3s+lqMtkv3wQlg3WxK1YifmpJSDO0E1aPBrZWlrrTO6cxRqCXLuX2aYgCljqXIQd0VnRidV0g==
 
-axios@^0.21.1:
+axios@0.21.1:
   version "0.21.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
   integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
@@ -2423,7 +2423,7 @@ foreach@^2.0.5:
   resolved "https://registry.yarnpkg.com/foreach/-/foreach-2.0.5.tgz#0bee005018aeb260d0a3af3ae658dd0136ec1b99"
   integrity sha1-C+4AUBiusmDQo6865ljdATbsG5k=
 
-framer-motion@^4.1.17:
+framer-motion@4.1.17:
   version "4.1.17"
   resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-4.1.17.tgz#4029469252a62ea599902e5a92b537120cc89721"
   integrity sha512-thx1wvKzblzbs0XaK2X0G1JuwIdARcoNOW7VVwjO8BUltzXPyONGAElLu6CiCScsOQRI7FIk/45YTFtJw5Yozw==
@@ -2869,7 +2869,7 @@ jest-worker@27.0.0-next.5:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
-js-cookie@^3.0.1:
+js-cookie@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-3.0.1.tgz#9e39b4c6c2f56563708d7d31f6f5f21873a92414"
   integrity sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==
@@ -3687,7 +3687,7 @@ react-hook-form@7.14.0:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.14.0.tgz#b2b336510ddb352cde2fc1f5137e763d5db6c938"
   integrity sha512-JwnIFedpGwUqxtMLv7lLq8PS6M6snFVeDvAQnG/0lyForn0ucWKMr58j86+9HobUGX6SAFmv7sVIJdLaxxzb8A==
 
-react-icons@^4.2.0:
+react-icons@4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.2.0.tgz#6dda80c8a8f338ff96a1851424d63083282630d0"
   integrity sha512-rmzEDFt+AVXRzD7zDE21gcxyBizD/3NqjbX6cmViAgdqfJ2UiLer8927/QhhrXQV7dEj/1EGuOTPp7JnLYVJKQ==
@@ -3789,7 +3789,7 @@ readdirp@~3.5.0:
   dependencies:
     picomatch "^2.2.1"
 
-recoil@^0.4.1:
+recoil@0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/recoil/-/recoil-0.4.1.tgz#1cb2171bc98d41361507131a059d7c3525d8c4fe"
   integrity sha512-vp6KPwlHOjJ4bJofmdDchmgI9ilMTCoUisK8/WYLl8dThH7e7KmtZttiLgvDb2Em99dUfTEsk8vT8L1nUMgqXQ==
