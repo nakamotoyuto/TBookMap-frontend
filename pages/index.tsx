@@ -2,6 +2,7 @@ import { Box, Heading, Image } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from "next/link"
 import { BookAll } from '../src/components/organisms/BookAll'
+import { Footer } from '../src/components/organisms/Footer'
 import { Header } from '../src/components/organisms/Header'
 import Kv from '../src/components/organisms/Kv'
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
         <Kv />
         <BookAll />
       </Box>
+      <Footer />
     </div >
   )
 }
