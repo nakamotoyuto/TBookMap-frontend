@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { ModalBox, useModal } from '../modules/Modal'
-import { AuthContent } from './modalInner/AuthContent'
+import { ModalBox, useModal } from '../../modules/Modal'
+import { AuthContent } from '../modalInner/AuthContent'
 import { Box, Button, Icon, MenuItem, useDisclosure, useMediaQuery } from "@chakra-ui/react"
 import { BiSearchAlt, BiLogIn, BiUser, BiBook } from 'react-icons/bi';
 

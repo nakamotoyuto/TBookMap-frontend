@@ -1,10 +1,11 @@
 import axios from "axios"
+import { API_URL } from "./constants"
 axios.defaults.withCredentials = true
 
-
 type fetchData = { url: string, token: string, data: any }
+type fetchNoAuthData = { url: string, data: any }
 
-export const fetchPost = async(data: fetchData) =>{
+export const fetchPost = async (data: fetchData) => {
   const result = await axios(data.url, {
     method: 'POST',
     headers:  {
@@ -15,24 +16,37 @@ export const fetchPost = async(data: fetchData) =>{
   return result
 }
 
-export const fetchPostNoAuth = async(data: fetchData) =>{
-  const result = await axios(data.url, {
+export const fetchPostNoAuth = async (data: fetchNoAuthData) => {
+  const url = `${API_URL}${data.url}`
+  const result = await axios(url, {
     method: 'POST',
     headers:  {
-      'Authorization':`Bearer ${data.token}`,
+      'Content-Type': 'application/json'
     },
-    params: data.data
+    data: data.data
+  })
+  return result
+}
+
+
+export const fetchPostNoBody = async (data: {token: string, url: string}) => {
+  const url = `${API_URL}${data.url}`
+  const result = await axios(url, {
+    method: 'POST',
+    headers:  {
+      'Authorization':`Bearer ${data.token}`
+    }
   })
   return result
 }
 
 export const patchItem = async(data: fetchData) =>{
-  // console.log(props.url)
-  // console.log(props.data)
+  // console.log(data.url)
+  // console.log(data.data)
   const result = await axios(data.url, {
     method: 'PATCH',
     headers:  {
-      'Content-Type': 'application/json'
+      'Authorization':`Bearer ${data.token}`,
     },
     params: data.data
   })
