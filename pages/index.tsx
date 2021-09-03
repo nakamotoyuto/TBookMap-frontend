@@ -5,7 +5,10 @@ import { BookAll } from '../src/components/organisms/BookAll'
 import { Footer } from '../src/components/organisms/Footer'
 import { Header } from '../src/components/organisms/Header'
 import Kv from '../src/components/organisms/Kv'
-export default function Home() {
+
+export default function Home(props: any) {
+  const { article } = props
+  console.table(article)
   return (
     <div>
       <Head>
@@ -21,4 +24,14 @@ export default function Home() {
       <Footer />
     </div >
   )
+}
+
+export const getServerSideProps = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts")
+  const article = await res.json()
+  return {
+    props: {
+      article
+    }
+  }
 }

@@ -7,7 +7,7 @@ export const BookRequestButton = () => {
   }
   return (
     <div>
-      <Button backgroundColor={`#EB7F31`} color={`#ffffff`} onClick={openRequestModal} >本リクエスト</Button>
+      <Button maxWidth='120px' backgroundColor={`#EB7F31`} color={`#ffffff`} onClick={openRequestModal}>本リクエスト</Button>
     </div>
   )
 }

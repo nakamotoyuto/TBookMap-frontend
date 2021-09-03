@@ -12,7 +12,7 @@ export const LoginButton = () => {
 
   return (
     <div>
-      <Button backgroundColor={`#EB7F31`} color={`#ffffff`} onClick={openLoginModal}>ログイン</Button>
+      <Button maxWidth='120px' w='120px' backgroundColor={`#EB7F31`} color={`#ffffff`} onClick={openLoginModal}>ログイン</Button>
       <ModalBox modal={isOpen} maxWidth="500px" modalClose={onClose}>
         <AuthContent modalClose={onClose} />
       </ModalBox>
