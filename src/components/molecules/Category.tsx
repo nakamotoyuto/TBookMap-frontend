@@ -13,7 +13,7 @@ export const Category = () => {
       <Box d="flex" flexWrap="wrap" justifyContent="space-between" css={css`gap: 10px 20px;`}>
         {
           BookTag.map((item) => {
-            return <CategoryItem name={item.name}/>
+            return <CategoryItem key={item.name} name={item.name}/>
           })
         }
       </Box>
