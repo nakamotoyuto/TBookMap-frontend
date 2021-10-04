@@ -11,7 +11,7 @@
   "dependencies": {
     "@babel/core": "7.15.0",
     "@chakra-ui/icons": "^1.0.15",
-    "@chakra-ui/react": "^1.6.6",
+    "@chakra-ui/react": "1.6.7",
     "axios": "0.21.1",
     "framer-motion": "4.1.17",
     "js-cookie": "3.0.1",
