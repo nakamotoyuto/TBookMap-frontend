@@ -1,27 +1,12 @@
-import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
+import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
 import React, { useState } from 'react'
 
-export const useModal = () => {
-  const [modal, setModal] = useState(false)
-
-  const modalOpen = () => {
-    setModal(true)
-    return
-  }
-
-  const modalClose = () => {
-    setModal(false)
-  }
-
-  return {
-    modal,
-    modalOpen,
-    modalClose
-  }
+type Props = {
+  modal: boolean,
+  modalClose: () => void
 }
 
-export const ModalBox = (props: any) => {
-
+export const ModalBox:React.FC<Props> = (props) => {
   return (
     <>
       <Modal onClose={props.modalClose} isOpen={props.modal} isCentered>
