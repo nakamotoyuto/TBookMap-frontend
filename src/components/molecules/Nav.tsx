@@ -10,37 +10,12 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 import { BiSearchAlt, BiLogIn, BiUser, BiBook } from 'react-icons/bi';
 import { AuthContent } from '../molecules/modalInner/AuthContent'
 import { ModalBox } from '../modules/Modal'
-import { auth } from './Login/auth'
-import { LoginActions, userSelectors } from '../../store/user/user'
-import Cookies from 'js-cookie'
+import { useEffectAuth } from '../modules/customhooks/useEffectAuth'
 
 export default function Nav() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const loginState = userSelectors.useIsLogin()
-  const loginAction = LoginActions.useLoginUser()
-  useEffect(() => {
-    setIsLoading(true)
-    if (loginState.isLogin) {
-      setIsLoading(false)
-      return
-    }
-    const token = Cookies.get('sansakuToken')
-    if (token) {
-      auth(token)
-        .then(function (response) {
-          if (response.status === 200) {
-            loginAction.isLogin(true)
-            loginAction.user(response.data.data)
-            return
-          }
-        })
-        .catch(function (err) {
-          console.log(err)
-        })
-    }
-    setIsLoading(false)
-  }, [])
+  const [isLoading, loginState] = useEffectAuth()
+
   return (
     <>
       <Box d={{ base: "none", md: "flex" }} alignItems={"center"} css={css`gap:0 10px;`}>
@@ -83,7 +58,7 @@ export default function Nav() {
             </MenuItem>
           </MenuList>
         </Menu>
-        <ModalBox modal={isOpen} maxWidth="400px" m={"0 15px"} modalClose={onClose}>
+        <ModalBox modal={isOpen} modalClose={onClose}>
           <AuthContent modalClose={onClose} />
         </ModalBox>
       </Box>
