@@ -7,7 +7,7 @@ type loginFormInput = {
 
 export const loginAuth = async (formData: loginFormInput) => {
   const data = {
-    url: 'api/login',
+    url: 'login',
     data: formData
   }
   const res = await fetchPostNoAuth(data)
@@ -16,7 +16,7 @@ export const loginAuth = async (formData: loginFormInput) => {
 
 export const auth = async (token: string) => {
   const data = {
-    url: 'api/auth',
+    url: 'auth',
     token: token
   }
   const res = await fetchPostNoBody(data)

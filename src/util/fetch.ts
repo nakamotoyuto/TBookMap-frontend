@@ -2,10 +2,19 @@ import axios from "axios"
 import { API_URL } from "./constants"
 axios.defaults.withCredentials = true
 
-type fetchData = { url: string, token: string, data: any }
-type fetchNoAuthData = { url: string, data: any }
+type FetchData = { url: string, token: string, data: any }
+type FetchNoAuthData = { url: string, data: any }
+type FetchGetNoAuth = string
 
-export const fetchPost = async (data: fetchData) => {
+export const fetchGetNoAuth = async (data: FetchGetNoAuth) => {
+  const url = `${data}`
+  const result = await axios(url, {
+    method: 'GET'
+  })
+  return result
+}
+
+export const fetchPost = async (data: FetchData) => {
   const result = await axios(data.url, {
     method: 'POST',
     headers:  {
@@ -16,7 +25,7 @@ export const fetchPost = async (data: fetchData) => {
   return result
 }
 
-export const fetchPostNoAuth = async (data: fetchNoAuthData) => {
+export const fetchPostNoAuth = async (data: FetchNoAuthData) => {
   const url = `${API_URL}${data.url}`
   const result = await axios(url, {
     method: 'POST',
@@ -40,7 +49,7 @@ export const fetchPostNoBody = async (data: {token: string, url: string}) => {
   return result
 }
 
-export const patchItem = async(data: fetchData) =>{
+export const patchItem = async(data: FetchData ) =>{
   // console.log(data.url)
   // console.log(data.data)
   const result = await axios(data.url, {
@@ -54,7 +63,7 @@ export const patchItem = async(data: fetchData) =>{
   return result
 }
 
-export const deleteItem = async(data: fetchData) =>{
+export const deleteItem = async(data: FetchData ) =>{
   // console.log(props)
   const result = await axios(data.url, {
     method: 'PATCH',
