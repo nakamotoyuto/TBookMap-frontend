@@ -15,7 +15,6 @@ type Props = {
   modalClose: VoidFunction
 }
 
-
 export const Login = (props: Props) => {
   const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm<loginFormInput>();
   const [isLoging, setIsLoading] = useState<boolean>(false)
@@ -83,8 +82,8 @@ export const Login = (props: Props) => {
             </FormControl>
           </ModalBody>
           <ModalFooter>
-            <Button isLoading={isLoging} type="submit" maxWidth={250} mr={3} backgroundColor={`#EB7F31`} color={`#ffffff`}>ログイン</Button>
-            <Button onClick={props.modalClose}>Close</Button>
+            <Button mr={3} maxWidth={250} onClick={props.modalClose}>Close</Button>
+            <Button isLoading={isLoging} type="submit" maxWidth={250} backgroundColor={`#EB7F31`} color={`#ffffff`}>ログイン</Button>
           </ModalFooter>
       </form>
     </Box>
