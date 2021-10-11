@@ -1,4 +1,4 @@
-import { Box, Heading } from '@chakra-ui/react'
+import { Box, Heading, Spinner } from '@chakra-ui/react'
 import { css } from '@emotion/react'
 import React from 'react'
 import { useGetBook } from '../modules/customhooks/useGetBook'
@@ -34,17 +34,20 @@ export const BookAll = () => {
   return (
     <Box p="16" w={`100%`} borderRadius={`10px`} border="1px" borderColor="#B2B2B2" boxShadow={'xl'}>
       <Heading as="h3" mb={6}>Topic</Heading>
-      <Box d="flex" justifyContent="space-between" flexWrap="wrap" css={css`gap: 20px 40px;`}>
-        {
-          book && (
-            book.data.map((item: Item) => {
-              return (
-                <BookCard {...item} key={item.title}/>
-              )
-            })
-          )
-        }
-      </Box>
+      {isLoading ?
+        <Spinner />:
+        <Box d="flex" justifyContent="space-between" flexWrap="wrap" css={css`gap: 20px 40px;`}>
+          {
+            book && (
+              book.data.map((item: Item) => {
+                return (
+                  <BookCard {...item} key={item.title} />
+                )
+              })
+            )
+          }
+        </Box>
+      }
     </Box>
   )
 }

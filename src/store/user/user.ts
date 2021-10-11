@@ -4,19 +4,25 @@ import Cookies from 'js-cookie'
 import { fetchPostNoAuth } from "../../util/fetch";
 import React from "react";
 
-type User = {
-  id: number| null,
-  name: string| null,
-  email: string | null,
-  password: string | null,
-  history_id: number | null,
-  token: string| null
+export type User = {
+  id: number,
+  name: string,
+  email: string,
+  password: string,
+  history_id: number,
+  token: string
 }
 
-type UserLogin = {
-  password: string| null,
-  email: string | null,
+const initialUser = {
+  id: 0,
+  name: '',
+  email: '',
+  password: '',
+  history_id: 0,
+  token: ''
 }
+
+const initialState = initialUser as User
 
 type IsLogin = {
   isLogin: boolean
@@ -33,23 +39,9 @@ type LoginActions = {
 
 const userState = atom<User>({
   key: RecoilAtomKeys.USER_STATE,
-  default: {
-    id: null,
-    name: null,
-    email: null,
-    password: null,
-    history_id: null,
-    token: null
-  },
+  default: initialState,
 })
 
-const userLoginValueState = atom<UserLogin>({
-  key: RecoilAtomKeys.USER_LOGIN_VALUE,
-  default: {
-    email: null,
-    password: null
-  }
-})
 // loginstate
 const isLoginstate = atom<IsLogin>({
   key: RecoilAtomKeys.ISLOGIN_STATE,
@@ -99,5 +91,4 @@ export const LoginActions = {
 export const userSelectors:  UserSelectors = {
   useUser: () => useRecoilValue(userSelector),
   useIsLogin: () => useRecoilValue(isLoginSelector),
-  // useLogin: () => useRecoilValue(loginSelector)
 }

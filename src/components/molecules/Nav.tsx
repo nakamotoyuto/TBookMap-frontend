@@ -10,11 +10,11 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 import { BiSearchAlt, BiLogIn, BiUser, BiBook } from 'react-icons/bi';
 import { AuthContent } from '../molecules/modalInner/AuthContent'
 import { ModalBox } from '../modules/Modal'
-import { useEffectAuth } from '../modules/customhooks/useEffectAuth'
+import { useAuth } from '../modules/customhooks/useAuth'
 
 export default function Nav() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [isLoading, loginState] = useEffectAuth()
+  const [isLoading, loginState] = useAuth()
 
   return (
     <>
@@ -51,7 +51,7 @@ export default function Nav() {
                   マイページ
                 </MenuItem>
               :
-              <MenuItem  onClick={onOpen} icon={<Icon as={BiLogIn} />}>ログイン</MenuItem> 
+                <MenuItem onClick={onOpen} icon={<Icon as={BiLogIn} />}>ログイン</MenuItem>
             }
             <MenuItem icon={<Icon as={BiBook}/>}>
               本リクエスト

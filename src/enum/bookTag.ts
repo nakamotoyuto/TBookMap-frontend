@@ -43,9 +43,6 @@ export const BookTag = [
     name: 'Kotlin',
   },
   {
-    name: 'Java',
-  },
-  {
     name: 'Swift',
   },
   {
@@ -91,8 +88,6 @@ export const BookTag = [
     name: 'Django',
   },{
     name: 'WordPress',
-  },{
-    name: 'Swift',
   },{
     name: 'Flutter',
   },{
