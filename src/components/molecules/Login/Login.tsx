@@ -1,12 +1,9 @@
 import { Button, FormControl, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, Input, FormLabel, Box, FormErrorMessage } from '@chakra-ui/react';
-import { isLocalURL } from 'next/dist/shared/lib/router/router';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
-import { LoginActions } from '../../../store/user/user';
-import { loginAuth } from './auth';
-import Cookies from 'js-cookie'
+import { useLogin } from '../../modules/customhooks/useLogin';
 
-type loginFormInput = {
+export type LoginFormInput = {
   email: string,
   password: string,
 }
@@ -16,33 +13,9 @@ type Props = {
 }
 
 export const Login = (props: Props) => {
-  const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm<loginFormInput>();
-  const [isLoging, setIsLoading] = useState<boolean>(false)
-  const loginAction = LoginActions.useLoginUser()
-  useEffect(() => {
-    return () => {
-      setIsLoading(false)
-    }
-  }, [])
-  const onSubmit = async (data: loginFormInput) => {
-    setIsLoading(true)
-    loginAuth(data)
-      .then(function (response) {
-        if (response.status === 200) {
-          loginAction.isLogin(true)
-          loginAction.user(response.data.data)
-          Cookies.set('sansakuToken', response.data.data.token)
-          setIsLoading(false)
-          props.modalClose()
-          return
-        }
-      })
-      .catch(function (err) {
-        setIsLoading(false)
-        console.log(err)
-      })
-    reset()
-  }
+  const  methods = useForm<LoginFormInput>();
+  const { register, handleSubmit, formState: { errors, isValid }, reset } = methods
+  const  [isLoading, onSubmit] = useLogin(methods, props.modalClose)
   return (
     <Box p={4}>
       <ModalHeader pl={0} pr={0} pt={4} pb={4}>Sign in your account</ModalHeader>
@@ -83,7 +56,7 @@ export const Login = (props: Props) => {
           </ModalBody>
           <ModalFooter>
             <Button mr={3} maxWidth={250} onClick={props.modalClose}>Close</Button>
-            <Button isLoading={isLoging} type="submit" maxWidth={250} backgroundColor={`#EB7F31`} color={`#ffffff`}>ログイン</Button>
+            <Button isLoading={isLoading} type="submit" maxWidth={250} backgroundColor={`#EB7F31`} color={`#ffffff`}>ログイン</Button>
           </ModalFooter>
       </form>
     </Box>
