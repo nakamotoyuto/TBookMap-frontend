@@ -9,6 +9,7 @@ import { css } from '@emotion/react'
 type Props = {
   image_url: string,
   title: string,
+  id: number
   bookTag: [
     {
       id: number,
@@ -25,32 +26,34 @@ type Tag = {
 }
 
 export const BookCard = (props: Props) => {
-  const { image_url, bookTag, title } = props
+  const { image_url, bookTag, title, id } = props
 
   return (
-    <Link href="/">
-      <Box maxW="145px" p={2} borderWidth="1px" borderRadius="lg" overflow="hidden">
-        <Image src={`${IMAGE_URL}${image_url}.jpg`} alt={`${IMAGE_URL}${image_url}`} fallbackSrc="https://via.placeholder.com/150"/>
-        <Box pt="2" d="flex" flexDirection="column" justifyContent="space-between">
-          <Box d="flex" alignItems="baseline" flexWrap="wrap" css={css`gap: 5px 5px;`}>
-            {bookTag.map((tag) => {
-              return (
-                <Tag key={`${title}${tag.tag.name}`} size={"sm"} variant="solid" colorScheme="teal">
-                  {tag.tag.name}
-                </Tag>
-              )
-            })}
-          </Box>
-          <Box
-            mt="1"
-            fontWeight="semibold"
-            css={titleText}
-          >
-            {title}
+    <>
+      <Link href={`/book/${id}`}>
+        <Box maxW="145px" p={2} borderWidth="1px" borderRadius="lg" overflow="hidden">
+          <Image src={`${IMAGE_URL}${image_url}.jpg`} alt={`${IMAGE_URL}${image_url}`} fallbackSrc="https://via.placeholder.com/150"/>
+          <Box pt="2" d="flex" flexDirection="column" justifyContent="space-between">
+            <Box d="flex" alignItems="baseline" flexWrap="wrap" css={css`gap: 5px 5px;`}>
+              {bookTag.map((tag) => {
+                return (
+                  <Tag key={`${title}${tag.tag.name}`} size={"sm"} variant="solid" colorScheme="teal">
+                    {tag.tag.name}
+                  </Tag>
+                )
+              })}
+            </Box>
+            <Box
+              mt="1"
+              fontWeight="semibold"
+              css={titleText}
+            >
+              {title}
+            </Box>
           </Box>
         </Box>
-        </Box>
-    </Link>
+      </Link>
+    </>
   )
 }
 
