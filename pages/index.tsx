@@ -1,11 +1,51 @@
 import { Box, Heading, Image } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from "next/link"
+import { SWRConfig } from 'swr'
+import { Category } from '../src/components/molecules/Category'
 import { BookAll } from '../src/components/organisms/BookAll'
 import { Footer } from '../src/components/organisms/Footer'
 import { Header } from '../src/components/organisms/Header'
 import Kv from '../src/components/organisms/Kv'
-export default function Home() {
+import { API_URL } from '../src/util/constants'
+
+type Item = {
+  id: number,
+  title: string,
+  detail_url: string,
+  detail: string,
+  publisher_name: string,
+  sales_date: string,
+  image_url: string,
+  author: string,
+  bookTag: [
+    {
+      id: number,
+      tag: Tag
+    }
+  ]
+}
+
+type Tag = {
+  id: number,
+  name: string,
+  createdAt: string,
+  updatedAt: string
+}
+
+export const getServerSideProps = async () => {
+  const res = await fetch(`${API_URL}books`)
+  const book: Array<Item> = await res.json()
+  return {
+    props: {
+      fallback: {
+        '/api/books': book
+      }
+    }
+  }
+}
+
+export default function Home({ fallback }: any) {
   return (
     <div>
       <Head>
@@ -14,11 +54,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Box p={{base: 8, md:16}} d="flex" flexDirection="column" alignItems="center" maxW="765px" w="100%" margin="0 auto">
+      <Box p={{ base: 8, md: 4 }} pt={{base: 8, md: 16}} d="flex" flexDirection="column" alignItems="center" maxW="900px" w="100%" margin="0 auto">
         <Kv />
-        <BookAll />
+        <SWRConfig value={{ fallback }}>
+          <BookAll />
+        </SWRConfig>
+        <Category />
       </Box>
       <Footer />
     </div >
   )
 }
+
+

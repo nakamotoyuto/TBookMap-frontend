@@ -9,7 +9,6 @@ interface FeatureProps {
 }
 
 const Feature = ({ title, text, icon }: FeatureProps) => {
-  const [isLargerThan768] = useMediaQuery("(min-width: 768px)")
   return (
     <Stack>
       <Flex
@@ -24,7 +23,6 @@ const Feature = ({ title, text, icon }: FeatureProps) => {
         {icon}
       </Flex>
       <Text fontWeight={600}>{title}</Text>
-      {/* {isLargerThan768 && <Text color={'gray.600'}>{text}</Text>} */}
       <Text color={'gray.600'}>{text}</Text>s
     </Stack>
   );
@@ -32,7 +30,7 @@ const Feature = ({ title, text, icon }: FeatureProps) => {
 
 export default function KvColumns() {
   return (
-    <Box p={4}>
+    <Box p={4} mb="6">
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
         <Feature
           icon={<Icon as={FcReading} w={10} h={10} />}
@@ -45,7 +43,7 @@ export default function KvColumns() {
           icon={<Icon as={FcDonate} w={10} h={10} />}
           title={'お金ください'}
           text={
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...'
+            '私にはインフラの料金を払えるほどお金を持っていません。なのでお金をください'
           }
         />
         <Feature
