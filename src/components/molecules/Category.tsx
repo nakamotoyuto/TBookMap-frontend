@@ -30,7 +30,7 @@ const CategoryItem = (props: Props) => {
   return (
     <Link width="100%" maxWidth="150px">
       <Box p="1.5" borderRadius="lg" border="1px" borderColor="gray.200" textAlign="right">
-      {name}
+        {name}
       </Box>
     </Link>
   )

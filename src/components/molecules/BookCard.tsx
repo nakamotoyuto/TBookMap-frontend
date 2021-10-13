@@ -2,8 +2,9 @@ import React from 'react'
 import Link from 'next/link'
 import { Box, Image, Badge, HStack, Tag } from '@chakra-ui/react'
 import { API_URL, IMAGE_URL } from '../../util/constants'
-import images from '../../../public/img/booksImage0.jpg'
 import { css } from '@emotion/react'
+import { CategoryTag } from '../atoms/CategoryTag'
+import { TagBox } from './TagBox'
 // import { BookTag } from '../../enum/bookTag'
 
 type Props = {
@@ -34,15 +35,13 @@ export const BookCard = (props: Props) => {
         <Box maxW="145px" p={2} borderWidth="1px" borderRadius="lg" overflow="hidden">
           <Image src={`${IMAGE_URL}${image_url}.jpg`} alt={`${IMAGE_URL}${image_url}`} fallbackSrc="https://via.placeholder.com/150"/>
           <Box pt="2" d="flex" flexDirection="column" justifyContent="space-between">
-            <Box d="flex" alignItems="baseline" flexWrap="wrap" css={css`gap: 5px 5px;`}>
+            <TagBox gap={'5px 5px'}>
               {bookTag.map((tag) => {
                 return (
-                  <Tag key={`${title}${tag.tag.name}`} size={"sm"} variant="solid" colorScheme="teal">
-                    {tag.tag.name}
-                  </Tag>
+                  <CategoryTag name={tag.tag.name} size="sm" key={`${title}${tag.tag.name}`} />
                 )
               })}
-            </Box>
+            </TagBox>
             <Box
               mt="1"
               fontWeight="semibold"
