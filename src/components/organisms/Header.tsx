@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { Box, Heading } from '@chakra-ui/react'
 import React from 'react'
