@@ -2,7 +2,7 @@ import { Button, FormControl, ModalBody, ModalCloseButton, ModalFooter, ModalHea
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { css, jsx } from '@emotion/react'
-import { useLogin } from '../../modules/customhooks/useLogin';
+import { useSignUp } from '../../modules/customhooks/useSignUp';
 
 export type LoginFormInput = {
   email: string,
@@ -12,14 +12,13 @@ export type LoginFormInput = {
 type Props = {
   modalClose: VoidFunction
 }
-
-export const Login = (props: Props) => {
+export const SignUp = (props: Props) => {
   const  methods = useForm<LoginFormInput>();
-  const { register, handleSubmit, formState: { errors }, reset } = methods
-  const [isLoading, onSubmit, error] = useLogin(methods, props.modalClose)
+  const { register, handleSubmit, formState: { errors } } = methods
+  const [isLoading, onSubmit, error] = useSignUp(methods, props.modalClose)
   return (
     <Box p={4}>
-      <ModalHeader pl={0} pr={0} pt={4} pb={4}>Sign in your account</ModalHeader>
+      <ModalHeader pl={0} pr={0} pt={4} pb={4}>Sign up your account</ModalHeader>
       <ModalCloseButton />
       <form onSubmit={handleSubmit(onSubmit)}>
         <ModalBody>
@@ -58,7 +57,7 @@ export const Login = (props: Props) => {
         </ModalBody>
         <ModalFooter>
           <Button mr={3} maxWidth={250} onClick={props.modalClose}>Close</Button>
-          <Button isLoading={isLoading} type="submit" maxWidth={250} backgroundColor={`#EB7F31`} color={`#ffffff`}>ログイン</Button>
+          <Button isLoading={isLoading} type="submit" maxWidth={250} backgroundColor={`#EB7F31`} color={`#ffffff`}>サインアップ</Button>
         </ModalFooter>
       </form>
     </Box>

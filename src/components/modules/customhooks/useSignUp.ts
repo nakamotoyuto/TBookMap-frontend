@@ -5,14 +5,14 @@ import { LoginFormInput } from '../../molecules/Login/Login'
 import { UseFormReturn } from 'react-hook-form'
 import { fetchPostNoAuth } from '../../../util/fetch'
 
-export const useLogin = (methods: UseFormReturn<LoginFormInput, object>, closeModal: VoidFunction) => {
+export const useSignUp = (methods: UseFormReturn<LoginFormInput, object>, closeModal: VoidFunction) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
   const loginAction = LoginActions.useLoginUser()
 
-  const loginAuth = async (formData: LoginFormInput) => {
+  const signUpAuth = async (formData: LoginFormInput) => {
     const data = {
-      url: 'login',
+      url: 'signup',
       data: formData
     }
     const res = await fetchPostNoAuth(data)
@@ -21,22 +21,22 @@ export const useLogin = (methods: UseFormReturn<LoginFormInput, object>, closeMo
 
   const onSubmit = async (data: LoginFormInput) => {
     setIsLoading(true)
-    loginAuth(data)
+    signUpAuth(data)
       .then(function (response) {
         if (response.status === 200) {
-          loginAction.isLogin(true)
-          loginAction.user(response.data.data)
           Cookies.set('sansakuToken', response.data.data.token)
           setIsLoading(false)
           methods.reset()
           closeModal()
+          loginAction.isLogin(true)
+          loginAction.user(response.data.data)
           return
         }
       })
       .catch(function (err) {
+        methods.reset()
         setIsLoading(false)
         setError(true)
-        methods.reset()
         console.log(err)
       })
   }
