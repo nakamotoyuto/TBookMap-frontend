@@ -11,7 +11,7 @@ export const ModalInputBox:React.FC<Props> = (props) => {
   const { errors, children } = props;
 
   return (
-    <FormControl isInvalid={errors ? true : false}>
+    <FormControl isInvalid={errors}>
       <Box w={"100%"} mb={`30px`} d="flex" flexDirection="column" gap="10px" textAlign="left" fontSize="18px" fontWeight="bold">
         {children}
       </Box>
