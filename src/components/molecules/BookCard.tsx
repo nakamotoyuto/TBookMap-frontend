@@ -32,8 +32,8 @@ export const BookCard = (props: Props) => {
   return (
     <>
       <Link href={`/book/${id}`}>
-        <Box maxW="145px" p={2} borderWidth="1px" borderRadius="lg" overflow="hidden">
-          <Image src={`${IMAGE_URL}${image_url}.jpg`} alt={`${IMAGE_URL}${image_url}`} fallbackSrc="https://via.placeholder.com/150"/>
+        <Box maxW="145px" p={2} borderWidth="1px" borderRadius="lg" overflow="hidden" css={cardLink}>
+          <Image src={`${IMAGE_URL}${image_url}`} alt={`${IMAGE_URL}${image_url}`} fallbackSrc="https://via.placeholder.com/150"/>
           <Box pt="2" d="flex" flexDirection="column" justifyContent="space-between">
             <TagBox gap={'5px 5px'}>
               {bookTag.map((tag) => {
@@ -55,6 +55,13 @@ export const BookCard = (props: Props) => {
     </>
   )
 }
+
+const cardLink = css`
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+`
 
 const titleText = css`
   display: -webkit-box;
