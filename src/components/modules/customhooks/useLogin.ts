@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { LoginActions } from '../../../store/user/user'
 import Cookies from 'js-cookie'
-import { LoginFormInput } from '../../molecules/Login/Login'
-import { UseFormReturn } from 'react-hook-form'
+import { SubmitHandler, UseFormReturn } from 'react-hook-form'
 import { fetchPostNoAuth } from '../../../util/fetch'
+import { FormParamsData, LoginParams } from '../../../types/formParams'
 
-export const useLogin = (methods: UseFormReturn<LoginFormInput, object>, closeModal: VoidFunction) => {
+export const useLogin = (methods: UseFormReturn<LoginParams, object>, closeModal: VoidFunction) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
   const loginAction = LoginActions.useLoginUser()
 
-  const loginAuth = async (formData: LoginFormInput) => {
+  const loginAuth = async (formData: LoginParams) => {
     const data = {
       url: 'login',
       data: formData
@@ -19,7 +19,7 @@ export const useLogin = (methods: UseFormReturn<LoginFormInput, object>, closeMo
     return res
   }
 
-  const onSubmit = async (data: LoginFormInput) => {
+  const onSubmit:SubmitHandler<LoginParams> = async (data) => {
     setIsLoading(true)
     loginAuth(data)
       .then(function (response) {

@@ -1,19 +1,19 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
-import { FormParamsData, FormParamsDataKey } from '../../types/formParams'
+import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form'
 
-type Props = {
-  onSubmit: any,
-  formParamskey: FormParamsDataKey,
-}
+type FormProps<TFormValues> = {
+  onSubmit: SubmitHandler<TFormValues>;
+  children: (methods: UseFormReturn<TFormValues>) => React.ReactNode;
+};
 
-export const FormWrap:React.FC<Props> = (props) => {
-  const { formParamskey, onSubmit, children } = props
-
-  const { handleSubmit } = useForm<FormParamsData[typeof formParamskey]>()
+export const FormWrap = <TFormValues extends Record<string, any> = Record<string, any>>({
+  onSubmit,
+  children
+}: FormProps<TFormValues>) => {
+  const methods = useForm<TFormValues>();
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {children}
+    <form onSubmit={methods.handleSubmit(onSubmit)}>
+      {children(methods)}
     </form>
-  )
-}
+  );
+};
