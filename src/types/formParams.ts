@@ -10,4 +10,14 @@ export type BookRequestParams = {
   detail_url: string
 }
 
+export type UserUpdateParams = {
+  email: string,
+  password: string,
+  userInfo: {
+    name: string,
+    occupation: number,
+    history: number,
+  }
+}
+
 export type FormParamsDataKey = keyof FormParamsData

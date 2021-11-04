@@ -14,6 +14,18 @@ export const fetchGetNoAuth = async (data: FetchGetNoAuth) => {
   return result
 }
 
+// 認証付きAPI bodyなし
+export const fetchGetAuth = async (url: string, token: string) => {
+  const res = await fetch(url, {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+  return res.json()
+}
+
 export const fetchPost = async <T>(data: FetchData<T>) => {
   const result = await axios(data.url, {
     method: 'POST',
@@ -87,17 +99,7 @@ export const deleteItem = async<T>(data: FetchData<T> ) =>{
 //   return res.json()
 // }
 
-// // 認証付きAPI bodyなし
-// export const noBodyFetch = async (url: string, token: string, method: 'GET'|'PATCH'|'POST') => {
-//   const res = await fetch(url, {
-//     method: method,
-//     mode: 'cors',
-//     headers: {
-//       Authorization: `Bearer ${token}`
-//     }
-//   })
-//   return res.json()
-// }
+
 
 // // 認証付きAPI bodyあり
 // export const bodyFetch = async (url: string, token: string, method: 'POST' | 'PATCH', body: string) => {
