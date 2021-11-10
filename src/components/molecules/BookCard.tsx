@@ -28,7 +28,7 @@ type Tag = {
 
 export const BookCard = (props: Props) => {
   const { image_url, bookTag, title, id } = props
-
+  // TODO: cardcomponentで切り分ける
   return (
     <>
       <Link href={`/book/${id}`}>
