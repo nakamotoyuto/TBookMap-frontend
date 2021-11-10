@@ -69,7 +69,7 @@ export const LoginActions = {
         setUser((prev) => {
             return {
               ...prev,
-              userState: data
+              ...data
             }
         }),
       [])

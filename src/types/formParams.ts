@@ -11,12 +11,14 @@ export type BookRequestParams = {
 }
 
 export type UserUpdateParams = {
-  email: string,
-  password: string,
-  userInfo: {
-    name: string,
-    occupation: number,
-    history: number,
+  user: {
+    email: string,
+    password: string,
+    userInfo: {
+      name: string,
+      occupation: number,
+      history: number,
+    }
   }
 }
 
