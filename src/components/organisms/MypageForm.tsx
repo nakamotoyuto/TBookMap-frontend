@@ -1,5 +1,4 @@
-import React from 'react'
-import { useForm } from 'react-hook-form';
+import React, { useEffect } from 'react'
 
 import { FormControl } from '@chakra-ui/form-control';
 import { Box, HStack } from '@chakra-ui/layout';
@@ -10,15 +9,39 @@ import { css } from '@emotion/react'
 import { HistoryItem } from '../../enum/history';
 import { occupation } from '../../enum/occupation';
 import { UserUpdateParams } from '../../types/formParams';
-import { FormWrap } from '../atoms/FormWrap';
+import { FormDefaultValueWrap } from '../atoms/FormWrap';
 import { InputDom } from '../atoms/InputDom';
 import { InputLabel } from '../atoms/InputLabel';
 import { RadioCard } from '../atoms/RadioCard';
 import { Title } from '../atoms/Title';
+import { useMypage } from '../modules/customhooks/useMypage';
 
-export const MypageForm = () => {
-  const methods = useForm<UserUpdateParams>();
-  const { formState: { errors } } = methods
+const MypageFormContainer = () => {
+  const [isLoading, userData] = useMypage()
+
+  const onSubmit = () => {
+
+  }
+
+  if (isLoading) return <div>loadingnow</div>
+  if (userData) {
+    const defaultValues = {
+      user: {
+        email: userData.email,
+        password: userData.password,
+        userInfo: {
+          name: userData.userInfo.name,
+          history: userData.userInfo.history,
+          occupation: userData.userInfo.occupation
+        }
+      }
+    }
+    return <MypageFormDom data={defaultValues} onSubmit={ onSubmit}/>
+  }
+  return <></>
+}
+
+const MypageFormDom = ({data, onSubmit}: { data: UserUpdateParams, onSubmit: any }) => {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "history",
   })
@@ -28,8 +51,8 @@ export const MypageForm = () => {
       <Box m="auto" p="16" maxWidth="700px" borderRadius={`10px`} border="1px" borderColor="#B2B2B2" boxShadow={'xl'}>
       <Title title="Profile"/>
       <FormControl>
-        <FormWrap<UserUpdateParams> onSubmit={console.log('test')} >
-          {({ register }) => (
+          <FormDefaultValueWrap<UserUpdateParams> onSubmit={onSubmit} defaultValues={data}>
+            {({ register }) => (
               <Box d="flex" flexDirection="column" css={css`gap: 20px 0;`}>
                 <Box>
                   <InputLabel forText="name" text="お名前" />
@@ -37,7 +60,7 @@ export const MypageForm = () => {
                     id="name"
                     type="text"
                     placeholder="名前"
-                    regist={register("userInfo.name")}
+                    regist={register("user.userInfo.name")}
                   />
                 </Box>
                 <Box>
@@ -46,7 +69,7 @@ export const MypageForm = () => {
                     id="email"
                     type="email"
                     placeholder="メールアドレスを入力してください"
-                    regist={register("email", {
+                    regist={register("user.email", {
                       required: "メールアドレスは必須です。", pattern: {
                         value: /^([a-zA-Z0-9])+([a-zA-Z0-9\._+-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/,
                         message: "メールアドレスの形式が間違っています"
@@ -60,7 +83,7 @@ export const MypageForm = () => {
                     id="password"
                     type="password"
                     placeholder="パスワードを入力してください"
-                    regist={register("password",
+                    regist={register("user.password",
                       { required: true, pattern: /^[a-z\d]{2,100}$/i })
                     }
                   />
@@ -85,7 +108,7 @@ export const MypageForm = () => {
                     {
                       occupation.map((item) => {
                         return (
-                          <option value={item.id}>{item.name}</option>
+                          <option key={ item.name}value={item.id}>{item.name}</option>
                         )
                       })
                     }
@@ -93,9 +116,13 @@ export const MypageForm = () => {
                 </Box>
             </Box>
           )}
-          </FormWrap>
+          </FormDefaultValueWrap>
         </FormControl>
         </Box>
     </Box>
   )
 }
+
+export const MypageForm = () => (
+  <MypageFormContainer />
+)
