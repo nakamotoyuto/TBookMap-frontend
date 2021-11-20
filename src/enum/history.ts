@@ -19,4 +19,4 @@ export const HistoryItem = [
     id: 5,
     name: '5年',
   }
-] as const
+]
