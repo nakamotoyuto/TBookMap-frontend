@@ -1,8 +1,16 @@
-import { Button, FormControl, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, Input, FormLabel, Box, FormErrorMessage, Text } from '@chakra-ui/react';
+import { FormErrorMessage } from '@chakra-ui/form-control';
+import { Box } from '@chakra-ui/layout';
+import { ModalBody } from '@chakra-ui/modal';
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { css, jsx } from '@emotion/react'
-import { useSignUp } from '../../modules/customhooks/useSignUp';
+import { LoginParams } from '../../../types/formParams';
+import { FormWrap } from '../../atoms/FormWrap';
+import { InputDom } from '../../atoms/InputDom';
+import { InputLabel } from '../../atoms/InputLabel';
+import { useSignUp } from '../../customhooks/useSignUp';
+import { ModalFooterContent } from '../modalInner/ModalFooterContent';
+import { ModalHeaderContent } from '../modalInner/ModalHeaderContent';
+import { ModalInputBox } from '../ModalInputBox';
 
 export type LoginFormInput = {
   email: string,
@@ -13,60 +21,50 @@ type Props = {
   modalClose: VoidFunction
 }
 export const SignUp = (props: Props) => {
-  const  methods = useForm<LoginFormInput>();
-  const { register, handleSubmit, formState: { errors } } = methods
+  const methods = useForm<LoginFormInput>();
+  const { register, formState: {errors} } = methods
   const [isLoading, onSubmit, error] = useSignUp(methods, props.modalClose)
   return (
     <Box p={4}>
-      <ModalHeader pl={0} pr={0} pt={4} pb={4}>Sign up your account</ModalHeader>
-      <ModalCloseButton />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <ModalBody>
-          {error && <Text css={errorMessage}>メールアドレスもしくはパスワードが違います。</Text>}
-          <FormControl isInvalid={errors.email ? true : false}>
-            <Box w={"100%"} mb={`30px`} d="flex" flexDirection="column" gap="10px" textAlign="left" fontSize="18px" fontWeight="bold">
-              <FormLabel htmlFor="email">emailaddress</FormLabel>
-              <Input
-                id="email"
-                type="email"
-                autoComplete="email"
-                placeholder="メールアドレスを入力してください"
-                {...register("email", { required:"メールアドレスは必須です。", pattern: { 
-                  value: /^([a-zA-Z0-9])+([a-zA-Z0-9\._+-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/,
-                  message: "メールアドレスの形式が間違っています"
-                }})}
-              />
-              {errors.email && errors.email.type === "required" && <FormErrorMessage role="alert">必須項目になります</FormErrorMessage>}
-              {errors.email && errors.email.type === "pattern" &&  <FormErrorMessage role="alert">メールアドレスの形式が間違っています</FormErrorMessage>}
-            </Box>
-          </FormControl>
-          <FormControl isInvalid={errors.password ? true : false}>
-            <Box w={"100%"} mb={`30px`} d="flex" flexDirection="column" gap="10px" textAlign="left" fontSize="18px" fontWeight="bold">
-              <FormLabel htmlFor="password">password</FormLabel>
-              <Input
-                id="password"
-                type="password"
-                autoComplete="password"
-                placeholder="パスワードを入力してください"
-                {...register("password", { required: true, pattern: /^[a-z\d]{2,100}$/i })}
-              />
-              {errors.password && errors.password.type === "required" && <FormErrorMessage role="alert">必須項目になります</FormErrorMessage>}
-              {errors.password && errors.password.type === "pattern" && <FormErrorMessage role="alert">半角英数字で入力お願いします</FormErrorMessage>}
-            </Box>
-          </FormControl>
-        </ModalBody>
-        <ModalFooter>
-          <Button mr={3} maxWidth={250} onClick={props.modalClose}>Close</Button>
-          <Button isLoading={isLoading} type="submit" maxWidth={250} backgroundColor={`#EB7F31`} color={`#ffffff`}>サインアップ</Button>
-        </ModalFooter>
-      </form>
+      <FormWrap<LoginParams> onSubmit={onSubmit} >
+        {({ register }) => (
+          <>
+            <ModalHeaderContent modalHeader={'Sign in your account'}/>
+              <ModalBody>
+                <ModalInputBox errors={errors.email ? true : false}>
+                  <InputLabel forText="email" text="emailaddress" />
+                  <InputDom
+                    id="email"
+                    type="email"
+                    placeholder="メールアドレスを入力してください"
+                    regist={register("email", {
+                      required: "メールアドレスは必須です。", pattern: {
+                        value: /^([a-zA-Z0-9])+([a-zA-Z0-9\._+-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/,
+                        message: "メールアドレスの形式が間違っています"
+                      }
+                    })}
+                  />
+                  {errors.email && errors.email.type === "required" && <FormErrorMessage role="alert">必須項目になります</FormErrorMessage>}
+                  {errors.email && errors.email.type === "pattern" &&  <FormErrorMessage role="alert">メールアドレスの形式が間違っています</FormErrorMessage>}
+                </ModalInputBox>
+                <ModalInputBox errors={errors.password ? true : false}>
+                  <InputLabel forText="password" text="password" />
+                  <InputDom
+                    id="password"
+                    type="password"
+                    placeholder="パスワードを入力してください"
+                    regist={register("password",
+                      { required: true, pattern: /^[a-z\d]{2,100}$/i })
+                    }
+                  />
+                  {errors.password && errors.password.type === "required" && <FormErrorMessage role="alert">必須項目になります</FormErrorMessage>}
+                  {errors.password && errors.password.type === "pattern" && <FormErrorMessage role="alert">半角英数字で入力お願いします</FormErrorMessage>}
+                </ModalInputBox>
+              </ModalBody>
+            <ModalFooterContent isLoading={isLoading} text={'サインアップ'} modalClose={props.modalClose}/>
+          </>
+        )}
+      </FormWrap>
     </Box>
   )
 }
-
-const errorMessage = css`
-  display: block;
-  margin-bottom: 15px;
-  font-size: 14px;
-  color: #E53E3E;
-`
