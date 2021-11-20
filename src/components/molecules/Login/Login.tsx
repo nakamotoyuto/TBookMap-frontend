@@ -7,7 +7,7 @@ import { FormParamsData, LoginParams } from '../../../types/formParams';
 import { FormWrap } from '../../atoms/FormWrap';
 import { InputDom } from '../../atoms/InputDom';
 import { InputLabel } from '../../atoms/InputLabel';
-import { useLogin } from '../../modules/customhooks/useLogin';
+import { useLogin } from '../../customhooks/useLogin';
 import { ModalFooterContent } from '../modalInner/ModalFooterContent';
 import { ModalHeaderContent } from '../modalInner/ModalHeaderContent';
 import { ModalInputBox } from '../ModalInputBox';
@@ -58,7 +58,11 @@ export const Login = (props: Props) => {
                   {errors.password && errors.password.type === "pattern" && <FormErrorMessage role="alert">半角英数字で入力お願いします</FormErrorMessage>}
                 </ModalInputBox>
               </ModalBody>
-            <ModalFooterContent isLoading={isLoading} text={'ログイン'} modalClose={props.modalClose}/>
+            <ModalFooterContent
+              isLoading={isLoading}
+              text={'ログイン'}
+              modalClose={props.modalClose}
+            />
             </>
           )}
       </FormWrap>

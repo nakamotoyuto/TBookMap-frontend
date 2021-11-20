@@ -1,12 +1,13 @@
-import Image from 'next/image'
 import React from 'react'
+import Image from 'next/image'
+import Link from "next/link"
 import { Box, Icon, IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import search from '../../../public/img/svg/search.svg'
 
 import { css } from '@emotion/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { BiSearchAlt, BiUser, BiBook } from 'react-icons/bi';
-import { useAuth } from '../modules/customhooks/useAuth'
+import { useAuth } from '../customhooks/useAuth'
 import { LoginMenu } from './Login/LoginMenu'
 import { SignUpMenu } from './SignUp/SignUpMenu'
 
@@ -30,9 +31,11 @@ export default function Nav() {
             </MenuItem>
             {
               loginState.isLogin ?
+                <Link href="/mypage">
                 <MenuItem icon={<Icon as={BiUser} />}>
                   マイページ
                 </MenuItem>
+                </Link>
                 :
                 <>
                   <LoginMenu />
