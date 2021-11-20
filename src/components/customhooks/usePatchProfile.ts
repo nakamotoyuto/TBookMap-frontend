@@ -27,8 +27,6 @@ export const usePatchProfile = () => {
       updateUser(data, token)
         .then((response) => {
           if (response.status === 200) {
-            console.log("done")
-            console.log(response.data)
             loginAction.user(response.data.data)
             setIsLoading(false)
           }

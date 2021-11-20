@@ -1,56 +1,51 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 
-import { FormControl } from '@chakra-ui/form-control';
-import { Box, HStack } from '@chakra-ui/layout';
-import { useRadioGroup } from '@chakra-ui/radio';
-import { Select } from '@chakra-ui/select';
-import { css } from '@emotion/react'
+import { FormControl } from "@chakra-ui/form-control";
+import { Box, HStack } from "@chakra-ui/layout";
+import { Radio, RadioGroup, useRadioGroup } from "@chakra-ui/radio";
+import { Select } from "@chakra-ui/select";
+import { css } from "@emotion/react"
 
-import { HistoryItem } from '../../enum/history';
-import { occupation } from '../../enum/occupation';
-import { UserUpdateParams } from '../../types/formParams';
-import { FormDefaultValueWrap } from '../atoms/FormWrap';
-import { InputDom } from '../atoms/InputDom';
-import { InputLabel } from '../atoms/InputLabel';
-import { RadioCard } from '../atoms/RadioCard';
-import { Title } from '../atoms/Title';
-import { useMypage } from '../modules/customhooks/useMypage';
-
+import { HistoryItem } from "../../enum/history";
+import { occupation } from "../../enum/occupation";
+import { UserUpdateParams } from "../../types/formParams";
+import { FormDefaultValueWrap } from "../atoms/FormWrap";
+import { InputDom } from "../atoms/InputDom";
+import { InputLabel } from "../atoms/InputLabel";
+import { RadioCard } from "../atoms/RadioCard";
+import { Title } from "../atoms/Title";
+import { useMypage } from "../customhooks/useMypage";
+import { Button } from "@chakra-ui/button";
+import { usePatchProfile } from "../customhooks/usePatchProfile";
+// Container層
 const MypageFormContainer = () => {
-  const [isLoading, userData] = useMypage()
-
-  const onSubmit = () => {
-
-  }
-
+  const [isLoading, userData] = useMypage();
+  const [isSubmitLoading, onUpdateSubmit, error] = usePatchProfile()
+  const onSubmit = (data: UserUpdateParams) => {
+    onUpdateSubmit(data)
+  };
   if (isLoading) return <div>loadingnow</div>
   if (userData) {
     const defaultValues = {
-      user: {
-        email: userData.email,
-        password: userData.password,
-        userInfo: {
-          name: userData.userInfo.name,
-          history: userData.userInfo.history,
-          occupation: userData.userInfo.occupation
-        }
+      email: userData.email,
+      password: userData.password,
+      userinfo: {
+        name: userData.userInfo.name,
+        history: userData.userInfo.history,
+        occupation: userData.userInfo.occupation
       }
     }
-    return <MypageFormDom data={defaultValues} onSubmit={ onSubmit}/>
+    return <MypageFormDom data={defaultValues} onSubmit={onSubmit} submitLoading={isSubmitLoading}/>
   }
-  return <></>
+  return <></>;
 }
 
-const MypageFormDom = ({data, onSubmit}: { data: UserUpdateParams, onSubmit: any }) => {
-  const { getRootProps, getRadioProps } = useRadioGroup({
-    name: "history",
-  })
-  const group = getRootProps()
+const MypageFormDom = ({data, onSubmit, submitLoading}: { data: UserUpdateParams, onSubmit: (data: UserUpdateParams) => void, submitLoading: boolean }) => {
   return (
     <Box p="100px 0">
-      <Box m="auto" p="16" maxWidth="700px" borderRadius={`10px`} border="1px" borderColor="#B2B2B2" boxShadow={'xl'}>
+      <Box m="auto" p="16" maxWidth="700px" borderRadius={`10px`} border="1px" borderColor="#B2B2B2" boxShadow={"xl"}>
       <Title title="Profile"/>
-      <FormControl>
+        <FormControl>
           <FormDefaultValueWrap<UserUpdateParams> onSubmit={onSubmit} defaultValues={data}>
             {({ register }) => (
               <Box d="flex" flexDirection="column" css={css`gap: 20px 0;`}>
@@ -60,7 +55,7 @@ const MypageFormDom = ({data, onSubmit}: { data: UserUpdateParams, onSubmit: any
                     id="name"
                     type="text"
                     placeholder="名前"
-                    regist={register("user.userInfo.name")}
+                    regist={register("userinfo.name")}
                   />
                 </Box>
                 <Box>
@@ -69,13 +64,13 @@ const MypageFormDom = ({data, onSubmit}: { data: UserUpdateParams, onSubmit: any
                     id="email"
                     type="email"
                     placeholder="メールアドレスを入力してください"
-                    regist={register("user.email", {
+                    regist={register("email", {
                       required: "メールアドレスは必須です。", pattern: {
                         value: /^([a-zA-Z0-9])+([a-zA-Z0-9\._+-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/,
                         message: "メールアドレスの形式が間違っています"
                       }
                     })}
-                  />
+                />
                 </Box>
                 <Box>
                   <InputLabel forText="password" text="password" />
@@ -83,36 +78,53 @@ const MypageFormDom = ({data, onSubmit}: { data: UserUpdateParams, onSubmit: any
                     id="password"
                     type="password"
                     placeholder="パスワードを入力してください"
-                    regist={register("user.password",
+                    regist={register("password",
                       { required: true, pattern: /^[a-z\d]{2,100}$/i })
                     }
                   />
                 </Box>
                 <Box>
                   <InputLabel forText="history" text="エンジニア歴" />
-                  <HStack {...group}>
-                    {
-                      HistoryItem.map((item) => {
-                        const radio = getRadioProps( { item } )
-                        return (
-                          <RadioCard key={item.id} {...radio}>
-                            {item.name}
-                          </RadioCard>
-                        )
-                      })
-                    }
-                  </HStack>
+                  <RadioGroup>
+                    <HStack spacing="24px">
+                      {
+                        HistoryItem.map((item) => {
+                          return (
+                            <Radio {...register("userinfo.history")}
+                              key={item.id}
+                              value={item.id}>
+                              {item.name}
+                            </Radio>
+                          )
+                        })
+                      }
+                    </HStack>
+                  </RadioGroup>
                 </Box>
                 <Box>
-                  <Select placeholder="職歴">
+                  <Select
+                    {...register("userinfo.occupation")}
+                    placeholder="職歴"
+                  >
                     {
                       occupation.map((item) => {
                         return (
-                          <option key={ item.name}value={item.id}>{item.name}</option>
+                          <option key={ item.name} value={item.id}>{item.name}</option>
                         )
                       })
                     }
                   </Select>
+                </Box>
+                <Box d="flex" justifyContent="flex-end">
+                  <Button
+                    isLoading={submitLoading}
+                    type="submit"
+                    maxWidth={250}
+                    backgroundColor={`#EB7F31`}
+                    color={`#ffffff`}
+                  >
+                    保存
+                  </Button>
                 </Box>
             </Box>
           )}

@@ -39,7 +39,6 @@ export const fetchPost = async <T>(data: FetchData<T>) => {
 }
 
 export const fetchPatch = async <T>(data: FetchData<T>) => {
-  console.log(data)
   const result = await axios(`${API_URL}${data.url}`, {
     method: 'PATCH',
     headers:  {
