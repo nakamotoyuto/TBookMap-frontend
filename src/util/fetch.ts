@@ -7,7 +7,7 @@ type FetchNoAuthData = { url: string, data: any }
 type FetchGetNoAuth = string
 
 export const fetchGetNoAuth = async (data: FetchGetNoAuth) => {
-  const url = `${data}`
+  const url = `${API_URL}${data}`
   const result = await axios(url, {
     method: 'GET'
   })
@@ -16,7 +16,7 @@ export const fetchGetNoAuth = async (data: FetchGetNoAuth) => {
 
 // 認証付きAPI bodyなし
 export const fetchGetAuth = async (url: string, token: string) => {
-  const res = await fetch(url, {
+  const res = await fetch(`${API_URL}${url}`, {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -27,10 +27,24 @@ export const fetchGetAuth = async (url: string, token: string) => {
 }
 
 export const fetchPost = async <T>(data: FetchData<T>) => {
-  const result = await axios(data.url, {
+  const result = await axios(`${API_URL}${data.url}`, {
     method: 'POST',
-    headers:  {
+    headers: {
+      'Content-Type': 'application/json',
       'Authorization':`Bearer ${data.token}`,
+    },
+    params: data.data
+  })
+  return result
+}
+
+export const fetchPatch = async <T>(data: FetchData<T>) => {
+  console.log(data)
+  const result = await axios(`${API_URL}${data.url}`, {
+    method: 'PATCH',
+    headers:  {
+      'Authorization': `Bearer ${data.token}`,
+      'Content-Type': 'application/json',
     },
     params: data.data
   })
