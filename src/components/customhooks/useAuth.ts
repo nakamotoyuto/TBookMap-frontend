@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import Cookies from 'js-cookie'
-import { LoginActions, userSelectors } from "../../../store/user/user"
-import { fetchPostNoBody } from "../../../util/fetch"
-import { User } from "../../../types/user"
+import { LoginActions, userSelectors } from "../../store/user/user"
+import { fetchPostNoBody } from "../../util/fetch"
+import { User } from "../../types/user"
 
 type AuthReturnType = {
   status: number

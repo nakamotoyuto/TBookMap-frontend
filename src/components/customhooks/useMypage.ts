@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
-import { fetchGetAuth } from '../../../util/fetch'
-import { User } from '../../../types/user'
-import { API_URL } from '../../../util/constants'
+import { fetchGetAuth } from '../../util/fetch'
+import { User } from '../../types/user'
+import { API_URL } from '../../util/constants'
 
 export const useMypage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -10,7 +10,7 @@ export const useMypage = () => {
   const [error, setError] = useState(false)
 
   const getProfile = async (token: string) => {
-    const res = await fetchGetAuth(`${API_URL}user`, token)
+    const res = await fetchGetAuth(`user`, token)
     return res
   }
 
