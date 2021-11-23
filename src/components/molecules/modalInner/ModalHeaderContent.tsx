@@ -8,8 +8,10 @@ type Props = {
 export const ModalHeaderContent = ({modalHeader}: Props) => {
   return (
     <>
-      <ModalHeader pl={0} pr={0} pt={4} pb={4}>{modalHeader}</ModalHeader>
-      <ModalCloseButton />
+      <ModalHeader pl={0} pr={0} pt={4} pb={4} d="flex" justifyContent="space-between">
+        {modalHeader}
+        <ModalCloseButton />
+      </ModalHeader>
     </>
   )
 }

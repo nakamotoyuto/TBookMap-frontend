@@ -11,6 +11,7 @@ type AuthReturnType = {
 
 export const useAuth = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isError, setIsError] = useState(false)
   const loginState = userSelectors.useIsLogin()
   const loginAction = LoginActions.useLoginUser()
 
@@ -42,10 +43,13 @@ export const useAuth = () => {
         })
         .catch(function (err) {
           loginAction.isLogin(false)
+          setIsError(true)
           setIsLoading(false)
           console.log(err)
+          return
         })
     } else {
+      setIsError(true)
       setIsLoading(false)
     }
     return (
@@ -53,5 +57,5 @@ export const useAuth = () => {
     )
   }, [])
 
-  return [isLoading, loginState] as const
+  return [isLoading, loginState, isError] as const
 }
