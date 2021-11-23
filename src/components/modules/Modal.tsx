@@ -6,10 +6,15 @@ type Props = {
   modalClose: () => void
 }
 
-export const ModalBox:React.FC<Props> = (props) => {
+export const ModalBox: React.FC<Props> = (props) => {
+
   return (
     <>
-      <Modal onClose={props.modalClose} isOpen={props.modal} isCentered>
+      <Modal
+        onClose={props.modalClose}
+        isOpen={props.modal}
+        isCentered
+      >
         <ModalOverlay />
         <ModalContent>
           {props.children}
