@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import Cookies from 'js-cookie'
-import { LoginActions, User, userSelectors } from "../../../store/user/user"
-import { fetchPostNoBody } from "../../../util/fetch"
+import { LoginActions, userSelectors } from "../../store/user/user"
+import { fetchPostNoBody } from "../../util/fetch"
+import { User } from "../../types/user"
 
 type AuthReturnType = {
   status: number
@@ -10,6 +11,7 @@ type AuthReturnType = {
 
 export const useAuth = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isError, setIsError] = useState(false)
   const loginState = userSelectors.useIsLogin()
   const loginAction = LoginActions.useLoginUser()
 
@@ -41,13 +43,19 @@ export const useAuth = () => {
         })
         .catch(function (err) {
           loginAction.isLogin(false)
+          setIsError(true)
           setIsLoading(false)
           console.log(err)
+          return
         })
     } else {
+      setIsError(true)
       setIsLoading(false)
     }
+    return (
+      setIsLoading(false)
+    )
   }, [])
 
-  return [isLoading, loginState] as const
+  return [isLoading, loginState, isError] as const
 }

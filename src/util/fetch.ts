@@ -7,18 +7,43 @@ type FetchNoAuthData = { url: string, data: any }
 type FetchGetNoAuth = string
 
 export const fetchGetNoAuth = async (data: FetchGetNoAuth) => {
-  const url = `${data}`
+  const url = `${API_URL}${data}`
   const result = await axios(url, {
     method: 'GET'
   })
   return result
 }
 
+// 認証付きAPI bodyなし
+export const fetchGetAuth = async (url: string, token: string) => {
+  const res = await fetch(`${API_URL}${url}`, {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+  return res.json()
+}
+
 export const fetchPost = async <T>(data: FetchData<T>) => {
-  const result = await axios(data.url, {
+  const result = await axios(`${API_URL}${data.url}`, {
     method: 'POST',
-    headers:  {
+    headers: {
+      'Content-Type': 'application/json',
       'Authorization':`Bearer ${data.token}`,
+    },
+    params: data.data
+  })
+  return result
+}
+
+export const fetchPatch = async <T>(data: FetchData<T>) => {
+  const result = await axios(`${API_URL}${data.url}`, {
+    method: 'PATCH',
+    headers:  {
+      'Authorization': `Bearer ${data.token}`,
+      'Content-Type': 'application/json',
     },
     params: data.data
   })
@@ -87,17 +112,7 @@ export const deleteItem = async<T>(data: FetchData<T> ) =>{
 //   return res.json()
 // }
 
-// // 認証付きAPI bodyなし
-// export const noBodyFetch = async (url: string, token: string, method: 'GET'|'PATCH'|'POST') => {
-//   const res = await fetch(url, {
-//     method: method,
-//     mode: 'cors',
-//     headers: {
-//       Authorization: `Bearer ${token}`
-//     }
-//   })
-//   return res.json()
-// }
+
 
 // // 認証付きAPI bodyあり
 // export const bodyFetch = async (url: string, token: string, method: 'POST' | 'PATCH', body: string) => {

@@ -1,32 +1,21 @@
 import { atom, selector, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { RecoilAtomKeys, RecoilSelectorKeys } from "../Recoilkeys";
-import Cookies from 'js-cookie'
-import { fetchPostNoAuth } from "../../util/fetch";
 import React from "react";
-
-export type User = {
-  id: number,
-  name: string,
-  email: string,
-  password: string,
-  history_id: number,
-  token: string
-}
+import { IsLogin, User } from "../../types/user";
 
 const initialUser = {
   id: 0,
-  name: '',
   email: '',
   password: '',
-  history_id: 0,
+  userInfo: {
+    name: '',
+    occupation: 0,
+    history: 0
+  },
   token: ''
 }
 
 const initialState = initialUser as User
-
-type IsLogin = {
-  isLogin: boolean
-}
 
 type UserSelectors = {
   useUser: () => User
@@ -80,7 +69,7 @@ export const LoginActions = {
         setUser((prev) => {
             return {
               ...prev,
-              userState: data
+              ...data
             }
         }),
       [])

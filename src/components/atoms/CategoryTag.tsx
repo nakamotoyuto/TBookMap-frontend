@@ -5,7 +5,7 @@ type Props = {
   name: string,
   size: (string & {}) | "sm" | "md" | "lg" | undefined
 }
-
+// tagコンポーネントに切り分ける。
 export const CategoryTag = (props: Props) => {
   const { name, size } = props
   return (
