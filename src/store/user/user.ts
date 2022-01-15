@@ -76,6 +76,36 @@ export const LoginActions = {
     return {isLogin, user}
   }
 }
+
+export const LogoutActions = {
+  useLogoutUser: () => {
+    const setIsLogin = useSetRecoilState(isLoginstate)
+    const setUser = useSetRecoilState(userState)
+    const isLoginFalse = React.useCallback(
+      () =>
+        //Login状態変更
+        setIsLogin((prev) => {
+          return {
+            ...prev,
+            isLogin: false
+          }
+        }),
+      [])
+    const initUser = React.useCallback(
+      () =>
+        //user状態変更
+        setUser(() => {
+            return {
+              ...initialUser
+            }
+        }),
+      [])
+    return {
+      isLoginFalse,
+      initUser
+    }
+  }
+}
 // ​userselector
 export const userSelectors:  UserSelectors = {
   useUser: () => useRecoilValue(userSelector),

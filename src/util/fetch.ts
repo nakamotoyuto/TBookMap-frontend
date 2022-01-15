@@ -4,6 +4,7 @@ axios.defaults.withCredentials = true
 
 type FetchData<T> = { url: string, token: string, data: T }
 type FetchNoAuthData = { url: string, data: any }
+type FetchNoData = {url: string, token: string}
 type FetchGetNoAuth = string
 
 export const fetchGetNoAuth = async (data: FetchGetNoAuth) => {
@@ -34,6 +35,17 @@ export const fetchPost = async <T>(data: FetchData<T>) => {
       'Authorization':`Bearer ${data.token}`,
     },
     params: data.data
+  })
+  return result
+}
+
+export const fetchPostNoData = async <T>(data: FetchNoData) => {
+  const result = await axios(`${API_URL}${data.url}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization':`Bearer ${data.token}`,
+    },
   })
   return result
 }
@@ -89,7 +101,6 @@ export const patchItem = async<T>(data: FetchData<T> ) =>{
 }
 
 export const deleteItem = async<T>(data: FetchData<T> ) =>{
-  // console.log(props)
   const result = await axios(data.url, {
     method: 'PATCH',
     headers:  {
