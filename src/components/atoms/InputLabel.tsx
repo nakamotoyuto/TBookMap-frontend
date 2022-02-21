@@ -1,5 +1,5 @@
-import { FormLabel } from '@chakra-ui/form-control'
-import React from 'react'
+import { FormLabel } from '@chakra-ui/form-control';
+import React from 'react';
 
 type Props = {
   text: string,
@@ -7,8 +7,8 @@ type Props = {
 }
 
 export const InputLabel = (props: Props) => {
-  const {text, forText} = props
+  const {text, forText} = props;
   return (
     <FormLabel htmlFor={forText}>{text}</FormLabel>
-  )
-}
+  );
+};

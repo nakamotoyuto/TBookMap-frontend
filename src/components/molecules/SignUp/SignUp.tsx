@@ -1,8 +1,8 @@
 import { FormControl, FormErrorMessage } from '@chakra-ui/form-control';
 import { Box } from '@chakra-ui/layout';
 import { ModalBody } from '@chakra-ui/modal';
-import React from 'react'
-import { useForm } from 'react-hook-form'
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { LoginParams } from '../../../types/formParams';
 import { FormWrap } from '../../atoms/FormWrap';
 import { InputDom } from '../../atoms/InputDom';
@@ -22,8 +22,8 @@ type Props = {
 }
 export const SignUp = (props: Props) => {
   const methods = useForm<LoginFormInput>();
-  const { register, formState: {errors} } = methods
-  const [isLoading, onSubmit, error] = useSignUp(methods, props.modalClose)
+  const { register, formState: {errors} } = methods;
+  const [isLoading, onSubmit, error] = useSignUp(methods, props.modalClose);
   return (
     <Box p={4}>
       <FormWrap<LoginParams> onSubmit={onSubmit} >
@@ -82,5 +82,5 @@ export const SignUp = (props: Props) => {
         )}
       </FormWrap>
     </Box>
-  )
-}
+  );
+};

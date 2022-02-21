@@ -1,10 +1,10 @@
-import React from 'react'
-import Link from 'next/link'
-import { Box, Image, Badge, HStack, Tag } from '@chakra-ui/react'
-import { API_URL, IMAGE_URL } from '../../util/constants'
-import { css } from '@emotion/react'
-import { CategoryTag } from '../atoms/CategoryTag'
-import { TagBox } from './TagBox'
+import React from 'react';
+import Link from 'next/link';
+import { Box, Image, Badge, HStack, Tag } from '@chakra-ui/react';
+import { API_URL, IMAGE_URL } from '../../util/constants';
+import { css } from '@emotion/react';
+import { CategoryTag } from '../atoms/CategoryTag';
+import { TagBox } from './TagBox';
 // import { BookTag } from '../../enum/bookTag'
 
 type Props = {
@@ -27,7 +27,7 @@ type Tag = {
 }
 
 export const BookCard = (props: Props) => {
-  const { image_url, bookTag, title, id } = props
+  const { image_url, bookTag, title, id } = props;
   // TODO: cardcomponentで切り分ける
   return (
     <>
@@ -39,7 +39,7 @@ export const BookCard = (props: Props) => {
               {bookTag.map((tag) => {
                 return (
                   <CategoryTag name={tag.tag.name} size="sm" key={`${title}${tag.tag.name}`} />
-                )
+                );
               })}
             </TagBox>
             <Box
@@ -53,15 +53,15 @@ export const BookCard = (props: Props) => {
         </Box>
       </Link>
     </>
-  )
-}
+  );
+};
 
 const cardLink = css`
   cursor: pointer;
   &:hover {
     opacity: 0.8;
   }
-`
+`;
 
 const titleText = css`
   display: -webkit-box;
@@ -69,4 +69,4 @@ const titleText = css`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   font-size: 14px;
-`
+`;

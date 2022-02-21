@@ -1,5 +1,5 @@
-import { ModalHeader, ModalCloseButton } from '@chakra-ui/modal'
-import React from 'react'
+import { ModalHeader, ModalCloseButton } from '@chakra-ui/modal';
+import React from 'react';
 
 type Props = {
   modalHeader: string
@@ -13,5 +13,5 @@ export const ModalHeaderContent = ({modalHeader}: Props) => {
         <ModalCloseButton />
       </ModalHeader>
     </>
-  )
-}
+  );
+};

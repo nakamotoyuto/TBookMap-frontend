@@ -1,5 +1,5 @@
-import React from 'react'
-import { SignUp } from '../SignUp/SignUp'
+import React from 'react';
+import { SignUp } from '../SignUp/SignUp';
 type Props = {
   modalClose: VoidFunction
 }
@@ -8,5 +8,5 @@ export const SignUpContent = (props: Props) => {
     <div>
       <SignUp modalClose={props.modalClose} />
     </div>
-  )
-}
+  );
+};

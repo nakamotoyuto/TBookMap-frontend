@@ -1,8 +1,8 @@
-import { Box, Heading, Spinner } from '@chakra-ui/react'
-import { css } from '@emotion/react'
-import React from 'react'
-import { useGetBook } from '../customhooks/useGetBook'
-import { BookCard } from '../molecules/BookCard'
+import { Box, Heading, Spinner } from '@chakra-ui/react';
+import { css } from '@emotion/react';
+import React from 'react';
+import { useGetBook } from '../customhooks/useGetBook';
+import { BookCard } from '../molecules/BookCard';
 
 type Item = {
   id: number,
@@ -29,7 +29,7 @@ type Tag = {
 }
 
 export const BookAll = () => {
-  const { book, isLoading } = useGetBook('books')
+  const { book, isLoading } = useGetBook('books');
 
   return (
     <Box p="16" w={`100%`} borderRadius={`10px`} border="1px" borderColor="#B2B2B2" boxShadow={'xl'}>
@@ -42,12 +42,12 @@ export const BookAll = () => {
               book.data.map((item: Item) => {
                 return (
                   <BookCard {...item} key={item.title} />
-                )
+                );
               })
             )
           }
         </Box>
       }
     </Box>
-  )
-}
+  );
+};

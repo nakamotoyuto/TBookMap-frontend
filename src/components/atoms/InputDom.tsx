@@ -1,6 +1,6 @@
-import { Input } from '@chakra-ui/input'
-import React from 'react'
-import { UseFormRegisterReturn } from 'react-hook-form'
+import { Input } from '@chakra-ui/input';
+import React from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 type Props = {
   id: string,
@@ -10,7 +10,7 @@ type Props = {
 }
 
 export const InputDom = (props: Props) => {
-  const {id, type, regist, placeholder} = props
+  const {id, type, regist, placeholder} = props;
   return (
     <Input
       id={id}
@@ -19,11 +19,11 @@ export const InputDom = (props: Props) => {
       placeholder={placeholder}
       {...regist}
     />
-  )
-}
+  );
+};
 
 export const RadioButton = (props: Props) => {
-  const {id, regist, placeholder} = props
+  const {id, regist, placeholder} = props;
   return (
     <Input
       id={id}
@@ -31,5 +31,5 @@ export const RadioButton = (props: Props) => {
       placeholder={placeholder}
       {...regist}
     />
-  )
-}
+  );
+};

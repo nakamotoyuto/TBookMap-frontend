@@ -1,5 +1,5 @@
-import { Tag } from '@chakra-ui/react'
-import React from 'react'
+import { Tag } from '@chakra-ui/react';
+import React from 'react';
 
 type Props = {
   name: string,
@@ -7,10 +7,10 @@ type Props = {
 }
 // tagコンポーネントに切り分ける。
 export const CategoryTag = (props: Props) => {
-  const { name, size } = props
+  const { name, size } = props;
   return (
     <Tag size={size} variant="solid" colorScheme="teal">
       {name}
     </Tag>
-)
-}
+);
+};

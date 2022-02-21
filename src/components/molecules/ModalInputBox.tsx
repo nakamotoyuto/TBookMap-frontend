@@ -1,6 +1,6 @@
-import { FormControl } from '@chakra-ui/form-control'
-import { Box } from '@chakra-ui/layout'
-import React from 'react'
+import { FormControl } from '@chakra-ui/form-control';
+import { Box } from '@chakra-ui/layout';
+import React from 'react';
 
 type Props = {
   errors: boolean
@@ -17,5 +17,5 @@ export const ModalInputBox:React.FC<Props> = (props) => {
         {children}
       </Box>
     </FormControl>
-  )
-}
+  );
+};

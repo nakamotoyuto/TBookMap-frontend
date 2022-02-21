@@ -1,17 +1,17 @@
-import { Box, Image, Text } from '@chakra-ui/react'
-import Link from 'next/link'
-import React from 'react'
-import { css } from '@emotion/react'
+import { Box, Image, Text } from '@chakra-ui/react';
+import Link from 'next/link';
+import React from 'react';
+import { css } from '@emotion/react';
 
-import { BookItem } from '../../../pages/book/[id]'
-import { IMAGE_URL } from '../../util/constants'
+import { BookItem } from '../../../pages/book/[id]';
+import { IMAGE_URL } from '../../util/constants';
 
 type Props = {
   book: BookItem
 }
 
 export const BookInfo = ({book}: Props) => {
-  const { title, image_url, detail, publisher_name, author, detail_url } = book
+  const { title, image_url, detail, publisher_name, author, detail_url } = book;
   return (
     <Box d="flex" justifyContent="flex-start" css={css`gap: 0 100px`} mt="40px">
       <Image src={`${IMAGE_URL}${image_url}`} alt={title} maxWidth="225px" width="100%"/>
@@ -24,5 +24,5 @@ export const BookInfo = ({book}: Props) => {
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};

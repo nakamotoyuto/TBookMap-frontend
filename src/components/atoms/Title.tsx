@@ -1,5 +1,5 @@
-import { Heading } from '@chakra-ui/layout'
-import React from 'react'
+import { Heading } from '@chakra-ui/layout';
+import React from 'react';
 
 type Props = {
   title: string
@@ -10,5 +10,5 @@ export const Title = ({title}: Props ) => {
     <Heading as="h2" size="lg">
       {title}
     </Heading>
-  )
-}
+  );
+};

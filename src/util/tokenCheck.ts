@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
 type TokenCheckType = {
   (path: string): void | string
@@ -11,7 +11,7 @@ export const tokenCheck: TokenCheckType = (path) => {
   const token = Cookies.get("sansakuToken");
   if (token === undefined) {
     router.replace(path);
-    return
+    return;
   }
-  return token
-}
+  return token;
+};

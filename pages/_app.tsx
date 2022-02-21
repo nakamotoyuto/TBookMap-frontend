@@ -1,7 +1,7 @@
-import '../src/styles/globals.css'
-import type { AppProps } from 'next/app'
+import '../src/styles/globals.css';
+import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react';
 import { Layout } from '../src/components/organisms/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -13,6 +13,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Layout>
       </ChakraProvider>
     </RecoilRoot>
-  )
+  );
 }
-export default MyApp
+export default MyApp;

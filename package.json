@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}' 'pages/**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
     "@babel/core": "7.15.0",

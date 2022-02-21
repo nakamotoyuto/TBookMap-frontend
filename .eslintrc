@@ -1,7 +1,20 @@
 {
-  "extends": ["next", "next/core-web-vitals"],
+  "extends": ["next", "next/core-web-vitals","plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@next/next/recommended"],
+  "plugins": ["import", "react", "jsx-a11y"],
   "rules": {
     // セミコロンない場合、エラー出力
-    // "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "import/no-anonymous-default-export": "warn",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "jsx-a11y/alt-text": [
+      "warn",
+      {
+        "elements": ["img"],
+        "img": ["Image"]
+      }
+    ]
   }
 }

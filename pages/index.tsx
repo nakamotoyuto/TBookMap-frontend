@@ -1,11 +1,11 @@
-import { Box, Heading, Image } from '@chakra-ui/react'
-import Head from 'next/head'
-import Link from "next/link"
-import { SWRConfig } from 'swr'
-import { Category } from '../src/components/molecules/Category'
-import { BookAll } from '../src/components/organisms/BookAll'
-import Kv from '../src/components/organisms/Kv'
-import { API_URL } from '../src/util/constants'
+import { Box, Heading, Image } from '@chakra-ui/react';
+import Head from 'next/head';
+import Link from "next/link";
+import { SWRConfig } from 'swr';
+import { Category } from '../src/components/molecules/Category';
+import { BookAll } from '../src/components/organisms/BookAll';
+import Kv from '../src/components/organisms/Kv';
+import { API_URL } from '../src/util/constants';
 
 type Item = {
   id: number,
@@ -32,16 +32,16 @@ type Tag = {
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch(`${API_URL}books`)
-  const book: Array<Item> = await res.json()
+  const res = await fetch(`${API_URL}books`);
+  const book: Array<Item> = await res.json();
   return {
     props: {
       fallback: {
         '/api/books': book
       }
     }
-  }
-}
+  };
+};
 
 export default function Home({ fallback }: any) {
   return (
@@ -59,7 +59,7 @@ export default function Home({ fallback }: any) {
         <Category />
       </Box>
     </div >
-  )
+  );
 }
 
 
