@@ -1,7 +1,7 @@
 import { Box, Heading, Spinner } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import React from 'react';
-import { useGetBook } from '../customhooks/useGetBook';
+import { useGetBook } from '../hooks/useGetBook';
 import { BookCard } from '../molecules/BookCard';
 
 type Item = {

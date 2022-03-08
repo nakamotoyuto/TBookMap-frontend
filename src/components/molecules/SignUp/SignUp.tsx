@@ -7,7 +7,7 @@ import { LoginParams } from '../../../types/formParams';
 import { FormWrap } from '../../atoms/FormWrap';
 import { InputDom } from '../../atoms/InputDom';
 import { InputLabel } from '../../atoms/InputLabel';
-import { useSignUp } from '../../customhooks/useSignUp';
+import { useSignUp } from '../../hooks/useSignUp';
 import { ModalFooterContent } from '../modalInner/ModalFooterContent';
 import { ModalHeaderContent } from '../modalInner/ModalHeaderContent';
 import { ModalInputBox } from '../ModalInputBox';

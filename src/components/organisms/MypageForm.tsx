@@ -14,9 +14,9 @@ import { InputDom } from "../atoms/InputDom";
 import { InputLabel } from "../atoms/InputLabel";
 import { RadioCard } from "../atoms/RadioCard";
 import { Title } from "../atoms/Title";
-import { useMypage } from "../customhooks/useMypage";
+import { useMypage } from "../hooks/useMypage";
 import { Button } from "@chakra-ui/button";
-import { usePatchProfile } from "../customhooks/usePatchProfile";
+import { usePatchProfile } from "../hooks/usePatchProfile";
 // Container層
 const MypageFormContainer = () => {
   const [isLoading, userData] = useMypage();

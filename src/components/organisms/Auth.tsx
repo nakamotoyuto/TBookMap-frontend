@@ -2,7 +2,7 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import router, { useRouter } from 'next/router';
 import { tokenCheck } from '../../util/tokenCheck';
-import { useAuth } from '../customhooks/useAuth';
+import { useAuth } from '../hooks/useAuth';
 
 type Props = {
   children: React.ReactNode
