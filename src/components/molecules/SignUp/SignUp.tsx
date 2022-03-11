@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { LoginParams } from '../../../types/formParams';
 import { FormWrap } from '../../atoms/FormWrap';
 import { InputDom } from '../../atoms/InputDom';
-import { InputLabel } from '../../atoms/InputLabel';
+import { InputLabel } from '../../common/InputLabel';
 import { useSignUp } from '../../hooks/useSignUp';
 import { ModalFooterContent } from '../modalInner/ModalFooterContent';
 import { ModalHeaderContent } from '../modalInner/ModalHeaderContent';

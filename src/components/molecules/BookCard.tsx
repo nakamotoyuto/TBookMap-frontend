@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import { Box, Image, Badge, HStack, Tag } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 import { API_URL, IMAGE_URL } from '../../util/constants';
 import { css } from '@emotion/react';
-import { CategoryTag } from '../atoms/CategoryTag';
+import { Tag } from '../common/Tag';
 import { TagBox } from './TagBox';
 // import { BookTag } from '../../enum/bookTag'
 
@@ -38,7 +38,7 @@ export const BookCard = (props: Props) => {
             <TagBox gap={'5px 5px'}>
               {bookTag.map((tag) => {
                 return (
-                  <CategoryTag name={tag.tag.name} size="sm" key={`${title}${tag.tag.name}`} />
+                  <Tag name={tag.tag.name} size="sm" key={`${title}${tag.tag.name}`} />
                 );
               })}
             </TagBox>

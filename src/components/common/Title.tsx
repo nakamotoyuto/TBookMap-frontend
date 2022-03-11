@@ -7,8 +7,12 @@ type Props = {
 
 export const Title = ({title}: Props ) => {
   return (
-    <Heading as="h2" size="lg">
+    <h2 className='
+      text-2xl
+      leading-tight
+      font-bold
+    '>
       {title}
-    </Heading>
+    </h2>
   );
 };

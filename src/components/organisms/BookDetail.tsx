@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/layout';
 import React from 'react';
 import { BookItem } from '../../../pages/book/[id]';
-import { CategoryTag } from '../atoms/CategoryTag';
-import { Title } from '../atoms/Title';
+import { Tag } from '../common/Tag';
+import { Title } from '../common/Title';
 import { BookInfo } from '../molecules/BookInfo';
 import { TagBox } from '../molecules/TagBox';
 
@@ -20,7 +20,7 @@ export const BookDetail = ({ book }: Props) => {
         {
           bookTag.map((tag) => {
             return (
-              <CategoryTag name={tag.tag.name} size="md" key={`${title}${tag.tag.name}`} />
+              <Tag name={tag.tag.name} size="md" key={`${title}${tag.tag.name}`} />
             );
           })
         }
