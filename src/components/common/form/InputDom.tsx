@@ -12,22 +12,10 @@ type Props = {
 export const InputDom = (props: Props) => {
   const {id, type, regist, placeholder} = props;
   return (
-    <Input
-      id={id}
+    <input
       type={type}
-      autoComplete={type}
-      placeholder={placeholder}
-      {...regist}
-    />
-  );
-};
-
-export const RadioButton = (props: Props) => {
-  const {id, regist, placeholder} = props;
-  return (
-    <Input
       id={id}
-      type='radioButton'
+      autoComplete={type}
       placeholder={placeholder}
       {...regist}
     />
