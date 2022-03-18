@@ -13,20 +13,20 @@ type Props = {
 export const BookDetail = ({ book }: Props) => {
   const { title, bookTag } = book;
   return (
-    <Box p="80px 50px">
+    <div className='pt-20 pb-5'>
       <Title title={title} />
-      <Box mt="10px">
+      <div className='mt-3'>
         <TagBox gap={'10px'}>
         {
           bookTag.map((tag) => {
             return (
-              <Tag name={tag.tag.name} size="md" key={`${title}${tag.tag.name}`} />
+              <Tag name={tag.tag.name} key={`${title}${tag.tag.name}`} />
             );
           })
         }
         </TagBox>
-      </Box>
+      </div>
       <BookInfo book={ book }/>
-    </Box>
+    </div>
   );
 };
