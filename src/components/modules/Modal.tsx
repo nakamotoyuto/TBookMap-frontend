@@ -1,5 +1,5 @@
 import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 type Props = {
   modal: boolean,
@@ -21,5 +21,5 @@ export const ModalBox: React.FC<Props> = (props) => {
         </ModalContent>
       </Modal>
     </>
-  )
+  );
 };

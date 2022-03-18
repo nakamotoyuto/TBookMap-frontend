@@ -79,4 +79,4 @@ export const occupation = [
     id:20,
     name: 'SRE',
   },
-] as const
+] as const;

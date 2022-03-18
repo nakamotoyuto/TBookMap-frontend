@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { DeepPartial, Path, PathValue, SubmitHandler, UnpackNestedValue, useForm, UseFormReturn } from 'react-hook-form'
+import React, { useEffect } from 'react';
+import { DeepPartial, Path, PathValue, SubmitHandler, UnpackNestedValue, useForm, UseFormReturn } from 'react-hook-form';
 
 type FormProps<TFormValues> = {
   onSubmit: SubmitHandler<TFormValues>;
@@ -33,9 +33,10 @@ export const FormDefaultValueWrap = <TFormValues,>({
 }: FormDefaultValueProps<TFormValues>) => {
   const methods = useForm<TFormValues>();
   useEffect(() => {
-    if (!defaultValues) return
+    if (!defaultValues) return;
     methods.reset(defaultValues);
-  }, [defaultValues])
+  }, [defaultValues]);
+
   return (
     <form onSubmit={methods.handleSubmit(onSubmit)}>
       {children(methods)}

@@ -1,8 +1,7 @@
-import { Box, Heading, Spinner } from '@chakra-ui/react'
-import { css } from '@emotion/react'
-import React from 'react'
-import { useGetBook } from '../customhooks/useGetBook'
-import { BookCard } from '../molecules/BookCard'
+import { Box, Heading, Spinner } from '@chakra-ui/react';
+import React from 'react';
+import { useGetBook } from '../hooks/useGetBook';
+import { BookCard } from '../molecules/BookCard';
 
 type Item = {
   id: number,
@@ -29,25 +28,27 @@ type Tag = {
 }
 
 export const BookAll = () => {
-  const { book, isLoading } = useGetBook('books')
+  const { book, isLoading } = useGetBook('books');
 
   return (
-    <Box p="16" w={`100%`} borderRadius={`10px`} border="1px" borderColor="#B2B2B2" boxShadow={'xl'}>
-      <Heading as="h3" mb={6}>Topic</Heading>
-      {isLoading ?
-        <Spinner />:
-        <Box d="flex" justifyContent="space-between" flexWrap="wrap" css={css`gap: 20px 40px;`}>
-          {
-            book && (
-              book.data.map((item: Item) => {
-                return (
-                  <BookCard {...item} key={item.title} />
-                )
-              })
-            )
-          }
-        </Box>
+    <div className='p-4 w-full rounded-lg border border-red-50 shadow'>
+        <h3 className='mb-6 font-bold text-2xl'>Topic</h3>
+        {
+          isLoading ?
+            <Spinner />
+          :
+          <div className='flex justify-between flex-wrap gap-x-5 gap-y-10'>
+            {
+              book && (
+                book.data.map((item: Item) => {
+                  return (
+                    <BookCard {...item} key={item.title} />
+                  );
+                })
+              )
+            }
+          </div>
       }
-    </Box>
-  )
-}
+      </div>
+  );
+};

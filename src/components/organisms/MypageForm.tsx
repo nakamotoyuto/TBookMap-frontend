@@ -4,27 +4,26 @@ import { FormControl } from "@chakra-ui/form-control";
 import { Box, HStack } from "@chakra-ui/layout";
 import { Radio, RadioGroup, useRadioGroup } from "@chakra-ui/radio";
 import { Select } from "@chakra-ui/select";
-import { css } from "@emotion/react"
+import { css } from "@emotion/react";
 
 import { HistoryItem } from "../../enum/history";
 import { occupation } from "../../enum/occupation";
 import { UserUpdateParams } from "../../types/formParams";
-import { FormDefaultValueWrap } from "../atoms/FormWrap";
-import { InputDom } from "../atoms/InputDom";
-import { InputLabel } from "../atoms/InputLabel";
-import { RadioCard } from "../atoms/RadioCard";
-import { Title } from "../atoms/Title";
-import { useMypage } from "../customhooks/useMypage";
+import { FormDefaultValueWrap } from "../common/form/FormWrap";
+import { InputDom } from "../common/form/InputDom";
+import { InputLabel } from "../common/InputLabel";
+import { Title } from "../common/Title";
+import { useMypage } from "../hooks/useMypage";
 import { Button } from "@chakra-ui/button";
-import { usePatchProfile } from "../customhooks/usePatchProfile";
+import { usePatchProfile } from "../hooks/usePatchProfile";
 // Container層
 const MypageFormContainer = () => {
   const [isLoading, userData] = useMypage();
-  const [isSubmitLoading, onUpdateSubmit, error] = usePatchProfile()
+  const [isSubmitLoading, onUpdateSubmit, error] = usePatchProfile();
   const onSubmit = (data: UserUpdateParams) => {
-    onUpdateSubmit(data)
+    onUpdateSubmit(data);
   };
-  if (isLoading) return <div>loadingnow</div>
+  if (isLoading) return <div>loadingnow</div>;
   if (userData) {
     const defaultValues = {
       email: userData.email,
@@ -34,11 +33,11 @@ const MypageFormContainer = () => {
         history: userData.userInfo.history,
         occupation: userData.userInfo.occupation
       }
-    }
-    return <MypageFormDom data={defaultValues} onSubmit={onSubmit} submitLoading={isSubmitLoading}/>
+    };
+    return <MypageFormDom data={defaultValues} onSubmit={onSubmit} submitLoading={isSubmitLoading}/>;
   }
   return <></>;
-}
+};
 
 const MypageFormDom = ({data, onSubmit, submitLoading}: { data: UserUpdateParams, onSubmit: (data: UserUpdateParams) => void, submitLoading: boolean }) => {
   return (
@@ -95,7 +94,7 @@ const MypageFormDom = ({data, onSubmit, submitLoading}: { data: UserUpdateParams
                               value={item.id}>
                               {item.name}
                             </Radio>
-                          )
+                          );
                         })
                       }
                     </HStack>
@@ -110,7 +109,7 @@ const MypageFormDom = ({data, onSubmit, submitLoading}: { data: UserUpdateParams
                       occupation.map((item) => {
                         return (
                           <option key={ item.name} value={item.id}>{item.name}</option>
-                        )
+                        );
                       })
                     }
                   </Select>
@@ -132,9 +131,9 @@ const MypageFormDom = ({data, onSubmit, submitLoading}: { data: UserUpdateParams
         </FormControl>
         </Box>
     </Box>
-  )
-}
+  );
+};
 
 export const MypageForm = () => (
   <MypageFormContainer />
-)
+);

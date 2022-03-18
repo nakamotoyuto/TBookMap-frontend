@@ -1,37 +1,35 @@
-import React from 'react'
-
-import { Box, Heading } from '@chakra-ui/layout'
-import { css } from '@emotion/react'
-
-import { BookTag } from '../../enum/bookTag'
-import { Link } from '@chakra-ui/react'
+import React from 'react';
+import { BookTag } from '../../enum/bookTag';
+import Link from 'next/link';
 
 export const Category = () => {
   return (
-    <Box mt="16" mb="32" w={`100%`} borderRadius={`10px`}>
-      <Heading width="100%" as="h3" mb={6} textAlign="left">Category</Heading>
-      <Box d="flex" flexWrap="wrap" justifyContent="space-between" css={css`gap: 10px 20px;`}>
+    <div className='mt-5 mb-8 w-full rounded-lg'>
+      <h3 className='mb-6 font-bold text-2xl text-left'>Category</h3>
+      <div className='flex flex-wrap justify-between gap-x-1 gap-y-2'>
         {
           BookTag.map((item) => {
-            return <CategoryItem key={item.name} name={item.name}/>
+            return <CategoryItem key={item.name} name={item.name}/>;
           })
         }
-      </Box>
-    </Box>
-  )
-}
+      </div>
+    </div>
+  );
+};
 
 type Props = {
   name: string,
 }
 
 const CategoryItem = (props: Props) => {
-  const { name } = props
+  const { name } = props;
   return (
-    <Link width="100%" maxWidth="150px">
-      <Box p="1.5" borderRadius="lg" border="1px" borderColor="gray.200" textAlign="right">
-        {name}
-      </Box>
-    </Link>
-  )
-}
+    <div className='max-w-200 w-full  p-1 rounded-lg border-solid border-2 border-l-stone-200 text-right'>
+      <Link href={`/`} passHref>
+        <div className=''>
+          {name}
+        </div>
+      </Link>
+    </div>
+  );
+};

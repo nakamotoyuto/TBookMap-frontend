@@ -1,6 +1,6 @@
-import { Button } from '@chakra-ui/button'
-import { ModalFooter } from '@chakra-ui/modal'
-import React from 'react'
+import { Button } from '@chakra-ui/button';
+import { ModalFooter } from '@chakra-ui/modal';
+import React from 'react';
 
 type Props = {
   modalClose: VoidFunction,
@@ -9,7 +9,7 @@ type Props = {
 }
 
 export const ModalFooterContent = (props: Props) => {
-  const {modalClose, isLoading, text} = props
+  const {modalClose, isLoading, text} = props;
   return (
     <ModalFooter>
       <Button mr={3} maxWidth={250} onClick={modalClose}>Close</Button>
@@ -23,5 +23,5 @@ export const ModalFooterContent = (props: Props) => {
         {text}
       </Button>
     </ModalFooter>
-  )
-}
+  );
+};

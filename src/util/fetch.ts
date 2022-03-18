@@ -1,18 +1,19 @@
-import axios, { AxiosResponse } from "axios"
-import { API_URL } from "./constants"
-axios.defaults.withCredentials = true
+import axios, { AxiosResponse } from "axios";
+import { API_URL } from "./constants";
+axios.defaults.withCredentials = true;
 
 type FetchData<T> = { url: string, token: string, data: T }
 type FetchNoAuthData = { url: string, data: any }
+type FetchNoData = {url: string, token: string}
 type FetchGetNoAuth = string
 
 export const fetchGetNoAuth = async (data: FetchGetNoAuth) => {
-  const url = `${API_URL}${data}`
+  const url = `${API_URL}${data}`;
   const result = await axios(url, {
     method: 'GET'
-  })
-  return result
-}
+  });
+  return result;
+};
 
 // 認証付きAPI bodyなし
 export const fetchGetAuth = async (url: string, token: string) => {
@@ -22,9 +23,9 @@ export const fetchGetAuth = async (url: string, token: string) => {
     headers: {
       Authorization: `Bearer ${token}`
     }
-  })
-  return res.json()
-}
+  });
+  return res.json();
+};
 
 export const fetchPost = async <T>(data: FetchData<T>) => {
   const result = await axios(`${API_URL}${data.url}`, {
@@ -34,9 +35,20 @@ export const fetchPost = async <T>(data: FetchData<T>) => {
       'Authorization':`Bearer ${data.token}`,
     },
     params: data.data
-  })
-  return result
-}
+  });
+  return result;
+};
+
+export const fetchPostNoData = async <T>(data: FetchNoData) => {
+  const result = await axios(`${API_URL}${data.url}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization':`Bearer ${data.token}`,
+    },
+  });
+  return result;
+};
 
 export const fetchPatch = async <T>(data: FetchData<T>) => {
   const result = await axios(`${API_URL}${data.url}`, {
@@ -46,33 +58,33 @@ export const fetchPatch = async <T>(data: FetchData<T>) => {
       'Content-Type': 'application/json',
     },
     params: data.data
-  })
-  return result
-}
+  });
+  return result;
+};
 
 export const fetchPostNoAuth = async (data: FetchNoAuthData) => {
-  const url = `${API_URL}${data.url}`
+  const url = `${API_URL}${data.url}`;
   const result = await axios(url, {
     method: 'POST',
     headers:  {
       'Content-Type': 'application/json'
     },
     data: data.data
-  })
-  return result
-}
+  });
+  return result;
+};
 
 
 export const fetchPostNoBody = async <T>(data: {token: string, url: string}) => {
-  const url = `${API_URL}${data.url}`
+  const url = `${API_URL}${data.url}`;
   const result: AxiosResponse<T> = await axios(url, {
     method: 'POST',
     headers:  {
       'Authorization':`Bearer ${data.token}`
     }
-  })
-  return result
-}
+  });
+  return result;
+};
 
 export const patchItem = async<T>(data: FetchData<T> ) =>{
   // console.log(data.url)
@@ -83,22 +95,21 @@ export const patchItem = async<T>(data: FetchData<T> ) =>{
       'Authorization':`Bearer ${data.token}`,
     },
     params: data.data
-  })
+  });
 
-  return result
-}
+  return result;
+};
 
 export const deleteItem = async<T>(data: FetchData<T> ) =>{
-  // console.log(props)
   const result = await axios(data.url, {
     method: 'PATCH',
     headers:  {
       'Authorization':`Bearer ${data.token}`,
     },
     params: data.data
-  })
-  return result
-}
+  });
+  return result;
+};
 
 // post用 認証なし
 // export const fetchPostNoAuth = async (url: string, params) => {

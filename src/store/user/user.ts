@@ -13,9 +13,9 @@ const initialUser = {
     history: 0
   },
   token: ''
-}
+};
 
-const initialState = initialUser as User
+const initialState = initialUser as User;
 
 type UserSelectors = {
   useUser: () => User
@@ -29,7 +29,7 @@ type LoginActions = {
 const userState = atom<User>({
   key: RecoilAtomKeys.USER_STATE,
   default: initialState,
-})
+});
 
 // loginstate
 const isLoginstate = atom<IsLogin>({
@@ -37,22 +37,22 @@ const isLoginstate = atom<IsLogin>({
   default: {
     isLogin: false
   }
-})
+});
 // ユーザー
 const userSelector = selector<User>({
   key: RecoilSelectorKeys.USER_USERS,
   get: ({ get }) => get(userState)
-})
+});
 // ログイン状態
 const isLoginSelector = selector<IsLogin>({
   key: RecoilSelectorKeys.USER_ISLOGIN,
   get: ({ get }) => get(isLoginstate)
-})
+});
 //ログインできた時のuserのステートを更新するactions
 export const LoginActions = {
   useLoginUser: () => {
-    const setIsLogin = useSetRecoilState(isLoginstate)
-    const setUser = useSetRecoilState(userState)
+    const setIsLogin = useSetRecoilState(isLoginstate);
+    const setUser = useSetRecoilState(userState);
     const isLogin = React.useCallback(
       (isLogin: boolean) =>
         //Login状態変更
@@ -60,9 +60,9 @@ export const LoginActions = {
           return {
             ...prev,
             isLogin: isLogin
-          }
+          };
         }),
-      [])
+      []);
     const user = React.useCallback(
       (data: User) =>
         //user状態変更
@@ -70,14 +70,44 @@ export const LoginActions = {
             return {
               ...prev,
               ...data
-            }
+            };
         }),
-      [])
-    return {isLogin, user}
+      []);
+    return {isLogin, user};
   }
-}
+};
+
+export const LogoutActions = {
+  useLogoutUser: () => {
+    const setIsLogin = useSetRecoilState(isLoginstate);
+    const setUser = useSetRecoilState(userState);
+    const isLoginFalse = React.useCallback(
+      () =>
+        //Login状態変更
+        setIsLogin((prev) => {
+          return {
+            ...prev,
+            isLogin: false
+          };
+        }),
+      []);
+    const initUser = React.useCallback(
+      () =>
+        //user状態変更
+        setUser(() => {
+            return {
+              ...initialUser
+            };
+        }),
+      []);
+    return {
+      isLoginFalse,
+      initUser
+    };
+  }
+};
 // ​userselector
 export const userSelectors:  UserSelectors = {
   useUser: () => useRecoilValue(userSelector),
   useIsLogin: () => useRecoilValue(isLoginSelector),
-}
+};

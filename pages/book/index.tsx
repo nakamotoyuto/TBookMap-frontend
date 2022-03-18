@@ -3,5 +3,5 @@ export default function Book() {
     <div>
       TODO: 一覧ページ
     </div>
-  )
+  );
 }

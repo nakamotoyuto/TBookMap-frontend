@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-import { useDisclosure } from '@chakra-ui/hooks'
-import Icon from '@chakra-ui/icon'
-import { MenuItem } from '@chakra-ui/menu'
-import { BiUserPlus } from 'react-icons/bi'
+import { useDisclosure } from '@chakra-ui/hooks';
+import Icon from '@chakra-ui/icon';
+import { MenuItem } from '@chakra-ui/menu';
+import { BiUserPlus } from 'react-icons/bi';
 
-import { ModalBox } from '../../modules/Modal'
-import { SignUpContent } from '../modalInner/SignUpContent'
+import { ModalBox } from '../../modules/Modal';
+import { SignUpContent } from '../modalInner/SignUpContent';
 
 export const SignUpMenu = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
@@ -18,5 +18,5 @@ export const SignUpMenu = () => {
         <SignUpContent modalClose={onClose} />
       </ModalBox>
     </>
-  )
-}
+  );
+};
