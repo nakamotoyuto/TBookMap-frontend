@@ -1,4 +1,3 @@
-import { Box } from "@chakra-ui/layout";
 import Head from "next/head";
 import { BookDetail } from "../../src/components/organisms/BookDetail";
 import { API_URL } from "../../src/util/constants";

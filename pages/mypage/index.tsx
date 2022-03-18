@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import React from 'react';
 import { MypageForm } from '../../src/components/organisms/MypageForm';
@@ -11,9 +10,9 @@ const Auth = dynamic(
 export default function Mypage() {
   return (
     <Auth>
-      <Box>
+      <div>
         <MypageForm />
-      </Box>
+      </div>
     </Auth>
   );
 }

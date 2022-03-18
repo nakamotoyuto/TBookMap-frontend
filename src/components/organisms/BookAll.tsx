@@ -1,5 +1,4 @@
 import { Box, Heading, Spinner } from '@chakra-ui/react';
-import { css } from '@emotion/react';
 import React from 'react';
 import { useGetBook } from '../hooks/useGetBook';
 import { BookCard } from '../molecules/BookCard';
@@ -32,8 +31,8 @@ export const BookAll = () => {
   const { book, isLoading } = useGetBook('books');
 
   return (
-    <div className='p-64 w-full rounded-lg border border-red-50 shadow'>
-        <h3 className='mb-6'>Topic</h3>
+    <div className='p-4 w-full rounded-lg border border-red-50 shadow'>
+        <h3 className='mb-6 font-bold text-2xl'>Topic</h3>
         {
           isLoading ?
             <Spinner />

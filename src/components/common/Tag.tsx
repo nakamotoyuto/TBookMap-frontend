@@ -2,8 +2,7 @@
 import React from 'react';
 
 type Props = {
-  name: string,
-  size: (string & {}) | "sm" | "md" | "lg" | undefined
+  name: string
 }
 // tagコンポーネントに切り分ける。
 export const Tag = (props: Props) => {

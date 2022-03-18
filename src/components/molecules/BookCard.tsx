@@ -1,11 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import { Box, Image } from '@chakra-ui/react';
-import { API_URL, IMAGE_URL } from '../../util/constants';
-import { css } from '@emotion/react';
+import Image, { ImageLoaderProps } from 'next/image';
+import { IMAGE_URL } from '../../util/constants';
 import { Tag } from '../common/Tag';
 import { TagBox } from './TagBox';
-// import { BookTag } from '../../enum/bookTag'
 
 type Props = {
   image_url: string,
@@ -26,47 +24,32 @@ type Tag = {
   updatedAt: string
 }
 
+const myLoader = ({ src, width, quality }:ImageLoaderProps) => {
+  return `${IMAGE_URL}/${src}?w=${width}&q=${quality || 75}`;
+};
+
 export const BookCard = (props: Props) => {
   const { image_url, bookTag, title, id } = props;
   // TODO: cardcomponentで切り分ける
   return (
     <>
-      <Link href={`/book/${id}`}>
-        <Box maxW="145px" p={2} borderWidth="1px" borderRadius="lg" overflow="hidden" css={cardLink}>
-          <Image src={`${IMAGE_URL}${image_url}`} alt={`${IMAGE_URL}${image_url}`} fallbackSrc="https://via.placeholder.com/150"/>
-          <Box pt="2" d="flex" flexDirection="column" justifyContent="space-between">
-            <TagBox gap={'5px 5px'}>
+      <Link href={`/book/${id}`} passHref>
+        <div className='max-w-150 p-2 rounded-sm border-2 overflow-hidden cursor-pointer opacity-80'>
+          <Image loader={myLoader} src={`${image_url}`} width={150} height={200} layout="intrinsic" alt={title}/>
+          <div className='pt-1 flex flex-col justify-between'>
+            <TagBox gap={'1|.5'}>
               {bookTag.map((tag) => {
                 return (
-                  <Tag name={tag.tag.name} size="sm" key={`${title}${tag.tag.name}`} />
+                  <Tag name={tag.tag.name} key={`${title}${tag.tag.name}`} />
                 );
               })}
             </TagBox>
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              css={titleText}
-            >
+            <p className='mt-1 font-bold line-clamp-2 text-sm'>
               {title}
-            </Box>
-          </Box>
-        </Box>
+            </p>
+          </div>
+        </div>
       </Link>
     </>
   );
 };
-
-const cardLink = css`
-  cursor: pointer;
-  &:hover {
-    opacity: 0.8;
-  }
-`;
-
-const titleText = css`
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  font-size: 14px;
-`;
