@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     extend: {
       maxWidth: {
+        '120': '120px',
         '200': '200px',
         '250': '250px',
         '150': '150px',
@@ -16,6 +17,9 @@ module.exports = {
       },
       backgroundColor: {
         'main': '#EB7F31'
+      },
+      border: {
+        'sub': '#B2B2B2'
       }
     },
   },
