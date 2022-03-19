@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { SWRConfig } from 'swr';
 import { Category } from '../src/components/molecules/Category';
 import { BookAll } from '../src/components/organisms/BookAll';
-import Kv from '../src/components/organisms/Kv';
 import { API_URL } from '../src/util/constants';
 
 type Item = {
@@ -50,7 +49,6 @@ export default function Home({ fallback }: any) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className='flex flex-col items-center max-w-900 w-full m-0-auto p-8'>
-        <Kv />
         <SWRConfig value={{ fallback }}>
           <BookAll />
         </SWRConfig>
