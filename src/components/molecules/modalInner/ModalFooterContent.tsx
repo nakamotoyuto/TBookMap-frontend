@@ -1,6 +1,6 @@
-import { Button } from '@chakra-ui/button';
 import { ModalFooter } from '@chakra-ui/modal';
 import React from 'react';
+import { Button } from '../../common/Button';
 
 type Props = {
   modalClose: VoidFunction,
@@ -9,19 +9,15 @@ type Props = {
 }
 
 export const ModalFooterContent = (props: Props) => {
-  const {modalClose, isLoading, text} = props;
+  const {modalClose, text} = props;
   return (
     <ModalFooter>
-      <Button mr={3} maxWidth={250} onClick={modalClose}>Close</Button>
+      <Button className='mr-3 max-w-250' onClick={modalClose} text="Close"/>
       <Button
-        isLoading={isLoading}
         type="submit"
-        maxWidth={250}
-        backgroundColor={`#EB7F31`}
-        color={`#ffffff`}
-      >
-        {text}
-      </Button>
+        className=' max-w-250 bg-main text-white'
+        text={text}
+      />
     </ModalFooter>
   );
 };

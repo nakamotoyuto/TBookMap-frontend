@@ -7,11 +7,15 @@ module.exports = {
     extend: {
       maxWidth: {
         '200': '200px',
+        '250': '250px',
         '150': '150px',
         '900': '900px'
       },
       margin: {
         '0-auto': '0 auto'
+      },
+      backgroundColor: {
+        'main': '#EB7F31'
       }
     },
   },

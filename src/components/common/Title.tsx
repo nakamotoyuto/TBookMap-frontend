@@ -1,4 +1,3 @@
-import { Heading } from '@chakra-ui/layout';
 import React from 'react';
 
 type Props = {
