@@ -1,5 +1,5 @@
-import { Button } from '@chakra-ui/react';
 import React from 'react';
+import { Button } from '../common/Button';
 
 export const BookRequestButton = () => {
   const openRequestModal = () => {
@@ -7,7 +7,7 @@ export const BookRequestButton = () => {
   };
   return (
     <div>
-      <Button maxWidth='120px' backgroundColor={`#EB7F31`} color={`#ffffff`} onClick={openRequestModal}>本リクエスト</Button>
+      <Button className='max-w-120 bg-main text-white' onClick={openRequestModal} text="本リクエスト"/>
     </div>
   );
 };
