@@ -48,7 +48,7 @@ const MypageFormDom = ({data, onSubmit, submitLoading}: { data: UserUpdateParams
           <FormDefaultValueWrap<UserUpdateParams> onSubmit={onSubmit} defaultValues={data}>
             {({ register }) => (
               <Box d="flex" flexDirection="column" css={css`gap: 20px 0;`}>
-                <Box>
+                <div>
                   <InputLabel forText="name" text="お名前" />
                   <InputDom
                     id="name"
@@ -56,8 +56,8 @@ const MypageFormDom = ({data, onSubmit, submitLoading}: { data: UserUpdateParams
                     placeholder="名前"
                     regist={register("userinfo.name")}
                   />
-                </Box>
-                <Box>
+                </div>
+                <div>
                   <InputLabel forText="email" text="emailaddress" />
                   <InputDom
                     id="email"
@@ -70,8 +70,8 @@ const MypageFormDom = ({data, onSubmit, submitLoading}: { data: UserUpdateParams
                       }
                     })}
                 />
-                </Box>
-                <Box>
+                </div>
+                <div>
                   <InputLabel forText="password" text="password" />
                   <InputDom
                     id="password"
@@ -81,8 +81,8 @@ const MypageFormDom = ({data, onSubmit, submitLoading}: { data: UserUpdateParams
                       { required: true, pattern: /^[a-z\d]{2,100}$/i })
                     }
                   />
-                </Box>
-                <Box>
+                </div>
+                <div>
                   <InputLabel forText="history" text="エンジニア歴" />
                   <RadioGroup>
                     <HStack spacing="24px">
@@ -99,8 +99,8 @@ const MypageFormDom = ({data, onSubmit, submitLoading}: { data: UserUpdateParams
                       }
                     </HStack>
                   </RadioGroup>
-                </Box>
-                <Box>
+                </div>
+                <div>
                   <Select
                     {...register("userinfo.occupation")}
                     placeholder="職歴"
@@ -113,8 +113,8 @@ const MypageFormDom = ({data, onSubmit, submitLoading}: { data: UserUpdateParams
                       })
                     }
                   </Select>
-                </Box>
-                <Box d="flex" justifyContent="flex-end">
+                </div>
+                <div className="flex justify-end">
                   <Button
                     isLoading={submitLoading}
                     type="submit"
@@ -124,7 +124,7 @@ const MypageFormDom = ({data, onSubmit, submitLoading}: { data: UserUpdateParams
                   >
                     保存
                   </Button>
-                </Box>
+                </div>
             </Box>
           )}
           </FormDefaultValueWrap>

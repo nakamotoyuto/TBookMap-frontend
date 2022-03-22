@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/layout';
 import React from 'react';
 import { BookItem } from '../../../pages/book/[id]';
 import { Tag } from '../common/Tag';

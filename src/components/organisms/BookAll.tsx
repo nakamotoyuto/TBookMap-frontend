@@ -1,4 +1,4 @@
-import { Box, Heading, Spinner } from '@chakra-ui/react';
+import { Spinner } from '@chakra-ui/react';
 import React from 'react';
 import { useGetBook } from '../hooks/useGetBook';
 import { BookCard } from '../molecules/BookCard';
