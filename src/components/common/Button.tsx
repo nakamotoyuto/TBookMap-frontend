@@ -1,9 +1,9 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, MouseEventHandler } from 'react';
 
 type Props = {
   text: string,
   className: string,
-  onClick?: () => void,
+  onClick?: MouseEventHandler<HTMLButtonElement>,
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"]
 }
 
