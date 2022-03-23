@@ -1,5 +1,3 @@
-import { FormErrorMessage } from '@chakra-ui/form-control';
-import { ModalBody  } from '@chakra-ui/modal';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FormParamsData, LoginParams } from '../../../types/formParams';
@@ -26,7 +24,7 @@ export const Login = (props: Props) => {
         {({ register }) => (
           <>
             <ModalHeaderContent modalHeader={'Sign in your account'}/>
-              <ModalBody>
+              <div>
                 <ModalInputBox errors={errors.email ? true : false} id="email">
                   <InputLabel forText="email" text="emailaddress" />
                   <InputDom
@@ -40,8 +38,6 @@ export const Login = (props: Props) => {
                       }
                     })}
                   />
-                  {errors.email && errors.email.type === "required" && <FormErrorMessage role="alert">必須項目になります</FormErrorMessage>}
-                  {errors.email && errors.email.type === "pattern" &&  <FormErrorMessage role="alert">メールアドレスの形式が間違っています</FormErrorMessage>}
                 </ModalInputBox>
                 <ModalInputBox errors={errors.password ? true : false} id="passwords">
                   <InputLabel forText="password" text="passwords" />
@@ -53,18 +49,8 @@ export const Login = (props: Props) => {
                       { required: true, pattern: /^[a-z\d]{2,100}$/i })
                     }
                   />
-                {
-                  errors.password
-                  && errors.password.type === "required"
-                  && <FormErrorMessage role="alert">必須項目になります</FormErrorMessage>
-                }
-                {
-                  errors.password
-                  && errors.password.type === "pattern"
-                  && <FormErrorMessage role="alert">半角英数字で入力お願いします</FormErrorMessage>
-                }
                 </ModalInputBox>
-              </ModalBody>
+              </div>
             <ModalFooterContent
               isLoading={isLoading}
               text={'ログイン'}
