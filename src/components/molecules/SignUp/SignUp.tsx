@@ -28,8 +28,8 @@ export const SignUp = (props: Props) => {
       <FormWrap<LoginParams> onSubmit={onSubmit} >
         {({ register }) => (
           <>
-            <ModalHeaderContent modalHeader={'Sign up your account'}/>
-            <ModalBody>
+            <ModalHeaderContent modalHeader={'Sign up your account'} onClick={ props.modalClose}/>
+            <div>
               <ModalInputBox errors={errors.email ? true : false} id="email">
                 <InputLabel forText="email" text="emailaddress" />
                 <InputDom
@@ -43,16 +43,6 @@ export const SignUp = (props: Props) => {
                     }
                   })}
                 />
-                {
-                  errors.email &&
-                  errors.email.type === "required" &&
-                  <FormErrorMessage role="alert">必須項目になります</FormErrorMessage>
-                }
-                {
-                  errors.email &&
-                  errors.email.type === "pattern" &&
-                  <FormErrorMessage role="alert">メールアドレスの形式が間違っています</FormErrorMessage>
-                }
               </ModalInputBox>
               <ModalInputBox errors={errors.password ? true : false} id="password">
                 <InputLabel forText="password" text="password" />
@@ -64,18 +54,8 @@ export const SignUp = (props: Props) => {
                     { required: true, pattern: /^[a-z\d]{2,100}$/i })
                   }
                 />
-                {
-                  errors.password &&
-                  errors.password.type === "required" &&
-                  <FormErrorMessage role="alert">必須項目になります</FormErrorMessage>
-                }
-                {
-                  errors.password &&
-                  errors.password.type === "pattern" &&
-                  <FormErrorMessage role="alert">半角英数字で入力お願いします</FormErrorMessage>
-                }
               </ModalInputBox>
-            </ModalBody>
+            </div>
             <ModalFooterContent isLoading={isLoading} text={'サインアップ'} modalClose={props.modalClose}/>
           </>
         )}

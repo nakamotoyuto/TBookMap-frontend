@@ -23,7 +23,7 @@ export const Login = (props: Props) => {
       <FormWrap<LoginParams> onSubmit={onSubmit} >
         {({ register }) => (
           <>
-            <ModalHeaderContent modalHeader={'Sign in your account'}/>
+            <ModalHeaderContent modalHeader={'Sign in your account'} onClick={ props.modalClose}/>
               <div>
                 <ModalInputBox errors={errors.email ? true : false} id="email">
                   <InputLabel forText="email" text="emailaddress" />
