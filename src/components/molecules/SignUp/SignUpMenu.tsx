@@ -5,8 +5,8 @@ import Icon from '@chakra-ui/icon';
 import { MenuItem } from '@chakra-ui/menu';
 import { BiUserPlus } from 'react-icons/bi';
 
-import { ModalBox } from '../../modules/Modal';
 import { SignUpContent } from '../modalInner/SignUpContent';
+import { ModalDom } from '../../common/modal/Modal';
 
 export const SignUpMenu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -14,9 +14,9 @@ export const SignUpMenu = () => {
   return (
     <>
       <MenuItem onClick={onOpen} icon={<Icon as={BiUserPlus} />}>サインアップ</MenuItem>
-      <ModalBox modal={isOpen} modalClose={onClose}>
+      <ModalDom isOpen={isOpen} >
         <SignUpContent modalClose={onClose} />
-      </ModalBox>
+      </ModalDom>
     </>
   );
 };

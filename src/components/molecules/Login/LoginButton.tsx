@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { ModalBox } from '../../modules/Modal';
 import { AuthContent } from '../modalInner/AuthContent';
 import { Button, useDisclosure } from "@chakra-ui/react";
+import { ModalDom } from '../../common/modal/Modal';
 
 export const LoginButton = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -12,9 +12,9 @@ export const LoginButton = () => {
   return (
     <div>
       <Button maxWidth='120px' w='120px' backgroundColor={`#EB7F31`} color={`#ffffff`} onClick={openLoginModal}>ログイン</Button>
-      <ModalBox modal={isOpen} modalClose={onClose}>
+      <ModalDom isOpen={isOpen}>
         <AuthContent modalClose={onClose} />
-      </ModalBox>
+      </ModalDom>
     </div>
   );
 };

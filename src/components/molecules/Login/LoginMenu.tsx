@@ -5,8 +5,8 @@ import Icon from '@chakra-ui/icon';
 import { MenuItem } from '@chakra-ui/menu';
 import { BiLogIn } from 'react-icons/bi';
 
-import { ModalBox } from '../../modules/Modal';
 import { AuthContent } from '../modalInner/AuthContent';
+import { ModalDom } from '../../common/modal/Modal';
 
 export const LoginMenu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -14,9 +14,9 @@ export const LoginMenu = () => {
   return (
     <>
       <MenuItem onClick={onOpen} icon={<Icon as={BiLogIn} />}>ログイン</MenuItem>
-      <ModalBox modal={isOpen} modalClose={onClose}>
+      <ModalDom isOpen={isOpen}>
         <AuthContent modalClose={onClose} />
-      </ModalBox>
+      </ModalDom>
     </>
   );
 };
