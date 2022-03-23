@@ -1,5 +1,3 @@
-import { FormErrorMessage } from '@chakra-ui/form-control';
-import { ModalBody } from '@chakra-ui/modal';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { LoginParams } from '../../../types/formParams';
