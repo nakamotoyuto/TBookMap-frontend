@@ -28,7 +28,7 @@ export const SignUp = (props: Props) => {
           <>
             <ModalHeaderContent modalHeader={'Sign up your account'} onClick={ props.modalClose}/>
             <div>
-              <ModalInputBox errors={errors.email ? true : false} id="email">
+              <ModalInputBox>
                 <InputLabel forText="email" text="emailaddress" />
                 <InputDom
                   id="email"
@@ -42,7 +42,7 @@ export const SignUp = (props: Props) => {
                   })}
                 />
               </ModalInputBox>
-              <ModalInputBox errors={errors.password ? true : false} id="password">
+              <ModalInputBox>
                 <InputLabel forText="password" text="password" />
                 <InputDom
                   id="password"

@@ -1,21 +1,14 @@
-import { FormControl } from '@chakra-ui/form-control';
-import { Box } from '@chakra-ui/layout';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 type Props = {
-  errors: boolean
-  id: string
+  children: ReactNode
 }
 
-export const ModalInputBox:React.FC<Props> = (props) => {
-
-  const { errors, id, children } = props;
+export const ModalInputBox = ({ children }: Props) => {
 
   return (
-    <FormControl isInvalid={errors} id={id}>
-      <div className=' w-full mb-7 flex flex-col gap-2 text-left text-lg font-bold'>
-        {children}
-      </div>
-    </FormControl>
+    <div className=' w-full mb-7 flex flex-col gap-2 text-left text-lg font-bold'>
+      {children}
+    </div>
   );
 };
