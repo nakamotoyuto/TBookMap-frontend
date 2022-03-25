@@ -1,61 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from "next/link";
-import { Box, Icon, IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import search from '../../../public/img/svg/search.svg';
-
-import { css } from '@emotion/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
 import { BiSearchAlt, BiUser, BiBook } from 'react-icons/bi';
 import { useAuth } from '../hooks/useAuth';
 import { LoginMenu } from './Login/LoginMenu';
 import { SignUpMenu } from './SignUp/SignUpMenu';
+import { useRouter } from 'next/router';
 
 export default function Nav() {
   const [,loginState] = useAuth();
-
+  const router = useRouter();
+  const [menu, setMenu] = useState(false);
   return (
     <>
-      <Box d={{ base: "none", md: "flex" }} alignItems={"center"} css={css`gap:0 10px;`}>
+      <div className='flex items-center gap-x-0 gap-y-3'>
         <Image src={search} alt="検索ボタン"/>
-        <Menu>
-          <MenuButton
-            as={IconButton}
-            aria-label="Options"
-            icon={<HamburgerIcon />}
-            variant="outline"
-          />
-          <MenuList>
-            <MenuItem icon={<Icon as={BiSearchAlt} />}>
-              検索
-            </MenuItem>
-            {
-              loginState.isLogin ?
-                <Link href="/mypage">
-                <MenuItem icon={<Icon as={BiUser} />}>
-                  マイページ
-                </MenuItem>
-                </Link>
-                :
-                <>
-                  <LoginMenu />
-                  <SignUpMenu />
-                </>
-            }
-            <MenuItem icon={<Icon as={BiBook}/>}>
-              本リクエスト
-            </MenuItem>
-            {
-              loginState.isLogin &&
-                <Link href="/mypage">
-                  <MenuItem icon={<Icon as={BiUser} />}>
-                    マイページ
-                  </MenuItem>
-                </Link>
-            }
-          </MenuList>
-        </Menu>
-      </Box>
+        <div>
+          <button onClick={()=> setMenu(true)} className=" border rounded-md border-l-gray-200 cursor-pointer">
+            <div className='p-3 space-y-1'>
+              <div className="w-4 h-px bg-gray-600"></div>
+              <div className="w-4 h-px bg-gray-600"></div>
+              <div className="w-4 h-px bg-gray-600"></div>
+            </div>
+          </button>
+          {
+            menu && (
+              <>
+                <button type="button" onClick={() => {}}>
+                  <BiSearchAlt />
+                  <span>検索</span>
+                </button>
+                {
+                  loginState.isLogin ?
+                    <button type="button" onClick={() => router.push('/mypage')}>
+                      <BiUser />
+                      <span>マイページ</span>
+                    </button>
+                    :
+                    <>
+                      <LoginMenu />
+                      <SignUpMenu />
+                    </>
+                }
+                <button type="button" onClick={() => {}}>
+                  <BiBook />
+                  <span>本リクエスト</span>
+                </button>
+              </>
+            )
+          }
+        </div>
+      </div>
     </>
   );
 }
