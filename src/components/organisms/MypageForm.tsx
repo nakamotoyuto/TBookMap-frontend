@@ -9,7 +9,7 @@ import { InputLabel } from "../common/InputLabel";
 import { Title } from "../common/Title";
 import { useMypage } from "../hooks/useMypage";
 import { usePatchProfile } from "../hooks/usePatchProfile";
-import { Button } from "../common/Button";
+import { Button } from "../common/button/Button";
 // Container層
 const MypageFormContainer = () => {
   const [isLoading, userData] = useMypage();
