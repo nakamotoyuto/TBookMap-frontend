@@ -1,61 +1,56 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import Image from 'next/image';
-import Link from "next/link";
-import { Box, Icon, IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import search from '../../../public/img/svg/search.svg';
-
-import { css } from '@emotion/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
 import { BiSearchAlt, BiUser, BiBook } from 'react-icons/bi';
 import { useAuth } from '../hooks/useAuth';
 import { LoginMenu } from './Login/LoginMenu';
 import { SignUpMenu } from './SignUp/SignUpMenu';
+import { useRouter } from 'next/router';
 
 export default function Nav() {
   const [,loginState] = useAuth();
-
+  const router = useRouter();
+  const [menu, toggleMenu] = useReducer((menu) => !menu, false);
   return (
     <>
-      <Box d={{ base: "none", md: "flex" }} alignItems={"center"} css={css`gap:0 10px;`}>
+      <div className='flex items-center gap-y-0 gap-x-3 relative'>
         <Image src={search} alt="検索ボタン"/>
-        <Menu>
-          <MenuButton
-            as={IconButton}
-            aria-label="Options"
-            icon={<HamburgerIcon />}
-            variant="outline"
-          />
-          <MenuList>
-            <MenuItem icon={<Icon as={BiSearchAlt} />}>
-              検索
-            </MenuItem>
-            {
-              loginState.isLogin ?
-                <Link href="/mypage">
-                <MenuItem icon={<Icon as={BiUser} />}>
-                  マイページ
-                </MenuItem>
-                </Link>
-                :
-                <>
-                  <LoginMenu />
-                  <SignUpMenu />
-                </>
-            }
-            <MenuItem icon={<Icon as={BiBook}/>}>
-              本リクエスト
-            </MenuItem>
-            {
-              loginState.isLogin &&
-                <Link href="/mypage">
-                  <MenuItem icon={<Icon as={BiUser} />}>
-                    マイページ
-                  </MenuItem>
-                </Link>
-            }
-          </MenuList>
-        </Menu>
-      </Box>
+        <div>
+          <button onClick={toggleMenu} className="border rounded-md border-l-gray-200 cursor-pointer">
+            <div className='p-3 space-y-1'>
+              <div className="w-4 h-px bg-gray-600"></div>
+              <div className="w-4 h-px bg-gray-600"></div>
+              <div className="w-4 h-px bg-gray-600"></div>
+            </div>
+          </button>
+          {
+            menu && (
+              <div className='absolute flex flex-col top-12 right-0 w-36 border rounded-md border-l-gray-200 bg-white'>
+                <button className='flex items-center p-3 cursor-pointer hover:opacity-80 hover:bg-gray-200' type="button" onClick={() => {}}>
+                  <BiSearchAlt />
+                  <span>検索</span>
+                </button>
+                {
+                  loginState.isLogin ?
+                    <button className='flex items-center p-3 cursor-pointer hover:opacity-80 hover:bg-gray-200' type="button" onClick={() => router.push('/mypage')}>
+                      <BiUser />
+                      <span>マイページ</span>
+                    </button>
+                    :
+                    <>
+                      <LoginMenu />
+                      <SignUpMenu />
+                    </>
+                }
+                <button className='flex items-center p-3 cursor-pointer hover:opacity-80 hover:bg-gray-200' type="button" onClick={() => {}}>
+                  <BiBook />
+                  <span>本リクエスト</span>
+                </button>
+              </div>
+            )
+          }
+        </div>
+      </div>
     </>
   );
 }

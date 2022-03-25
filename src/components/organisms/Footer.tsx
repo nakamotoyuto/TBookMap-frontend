@@ -1,105 +1,50 @@
-import {
-  Box,
-  chakra,
-  Container,
-  Heading,
-  Icon,
-  Link,
-  Stack,
-  Text,
-  useColorModeValue,
-  VisuallyHidden,
-} from '@chakra-ui/react';
-import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-import { ReactNode } from 'react';
+import Link from "next/link";
 import { FcReading } from 'react-icons/fc';
 
-const Logo = (props: any) => {
+const Logo = () => {
   return (
-    <Box d="flex" alignItems="center">
-      <Icon w={6} h={6} mr={2} as={FcReading}/>
-      <Heading as="h2">sansaku</Heading>
-    </Box>
+    <div className='flex items-center'>
+      <FcReading className='w-6 h-6 mr-2' />
+      <h2 className='text-4xl font-bold'>sansaku</h2>
+    </div>
   );
 };
 
-const SocialButton = ({
-  children,
-  label,
-  href,
-}: {
-  children: ReactNode;
-  label: string;
-  href: string;
-}) => {
+const TwitterIcon = () => {
   return (
-    <chakra.button
-      bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
-      rounded={'full'}
-      w={8}
-      h={8}
-      cursor={'pointer'}
-      as={'a'}
-      href={href}
-      display={'inline-flex'}
-      alignItems={'center'}
-      justifyContent={'center'}
-      transition={'background 0.3s ease'}
-      _hover={{
-        bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200'),
-      }}>
-      <VisuallyHidden>{label}</VisuallyHidden>
-      {children}
-    </chakra.button>
+    <svg
+      className="w-6 h-6 text-blue-300 fill-current"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24">
+      <path
+        d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+      />
+    </svg>
   );
 };
 
 export const Footer = () => {
   return (
-    <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}>
-      <Container
-        as={Stack}
-        maxW={'6xl'}
-        py={4}
-        spacing={4}
-        justify={'center'}
-        align={'center'}>
+    <footer className='bg-gray-50 text-gray-700'>
+      <div className='py-4 space-4 flex flex-col justify-center items-center'>
         <Logo />
-        <Stack direction={'row'} spacing={6}>
+        <div className='flex flex-row space-6 gap-4'>
           <Link href={'#'}>利用規約</Link>
           <Link href={'#'}>プライバシーポリシー</Link>
           <Link href={'#'}>お問い合わせ</Link>
           <Link href={'#'}>本のリクエスト</Link>
-        </Stack>
-      </Container>
-      <Box
-        borderTopWidth={1}
-        borderStyle={'solid'}
-        borderColor={useColorModeValue('gray.200', 'gray.700')}>
-        <Container
-          as={Stack}
-          maxW={'6xl'}
-          py={4}
-          direction={{ base: 'column', md: 'row' }}
-          spacing={4}
-          justify={{ base: 'center', md: 'space-between' }}
-          align={{ base: 'center', md: 'center' }}>
-          <Text>© 2021 sansaku. All rights reserved</Text>
-          <Stack direction={'row'} spacing={6}>
-            <SocialButton label={'Twitter'} href={'#'}>
-              <FaTwitter />
-            </SocialButton>
-            {/* <SocialButton label={'YouTube'} href={'#'}>
-              <FaYoutube />
-            </SocialButton>
-            <SocialButton label={'Instagram'} href={'#'}>
-              <FaInstagram />
-            </SocialButton> */}
-          </Stack>
-        </Container>
-      </Box>
-    </Box>
+        </div>
+      </div>
+      <div className='border-t-2 border-solid border-gray-200'>
+        <div className='p-4 flex justify-between items-center gap-5'>
+          <p>© 2021 sansaku. All rights reserved</p>
+          <Link href={'#'} passHref>
+            <a>
+              <TwitterIcon />
+            </a>
+          </Link>
+        </div>
+      </div>
+    </footer>
   );
 };

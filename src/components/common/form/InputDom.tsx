@@ -1,4 +1,3 @@
-import { Input } from '@chakra-ui/input';
 import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 

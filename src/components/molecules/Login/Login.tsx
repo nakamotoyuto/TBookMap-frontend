@@ -1,6 +1,3 @@
-import { FormControl, FormErrorMessage } from '@chakra-ui/form-control';
-import { Box } from '@chakra-ui/layout';
-import { ModalBody, ModalHeader } from '@chakra-ui/modal';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FormParamsData, LoginParams } from '../../../types/formParams';
@@ -22,13 +19,13 @@ export const Login = (props: Props) => {
   const [isLoading, onSubmit, error] = useLogin(methods, props.modalClose);
 
   return (
-    <Box p={4}>
+    <div className='p-4'>
       <FormWrap<LoginParams> onSubmit={onSubmit} >
         {({ register }) => (
           <>
-            <ModalHeaderContent modalHeader={'Sign in your account'}/>
-              <ModalBody>
-                <ModalInputBox errors={errors.email ? true : false} id="email">
+            <ModalHeaderContent modalHeader={'Sign in your account'} onClick={ props.modalClose}/>
+              <div>
+                <ModalInputBox>
                   <InputLabel forText="email" text="emailaddress" />
                   <InputDom
                     id="email"
@@ -41,10 +38,8 @@ export const Login = (props: Props) => {
                       }
                     })}
                   />
-                  {errors.email && errors.email.type === "required" && <FormErrorMessage role="alert">必須項目になります</FormErrorMessage>}
-                  {errors.email && errors.email.type === "pattern" &&  <FormErrorMessage role="alert">メールアドレスの形式が間違っています</FormErrorMessage>}
                 </ModalInputBox>
-                <ModalInputBox errors={errors.password ? true : false} id="passwords">
+                <ModalInputBox>
                   <InputLabel forText="password" text="passwords" />
                   <InputDom
                     id="passwords"
@@ -54,18 +49,8 @@ export const Login = (props: Props) => {
                       { required: true, pattern: /^[a-z\d]{2,100}$/i })
                     }
                   />
-                {
-                  errors.password
-                  && errors.password.type === "required"
-                  && <FormErrorMessage role="alert">必須項目になります</FormErrorMessage>
-                }
-                {
-                  errors.password
-                  && errors.password.type === "pattern"
-                  && <FormErrorMessage role="alert">半角英数字で入力お願いします</FormErrorMessage>
-                }
                 </ModalInputBox>
-              </ModalBody>
+              </div>
             <ModalFooterContent
               isLoading={isLoading}
               text={'ログイン'}
@@ -74,6 +59,6 @@ export const Login = (props: Props) => {
             </>
           )}
       </FormWrap>
-    </Box>
+    </div>
   );
 };
