@@ -10,7 +10,7 @@ export const LoginMenu = () => {
 
   return (
     <>
-      <button type="button" onClick={onOpen}>
+      <button className='flex items-center p-3 cursor-pointer hover:opacity-80 hover:bg-gray-200' type="button" onClick={onOpen}>
         <BiLogIn />
         <span>ログイン</span>
       </button>
