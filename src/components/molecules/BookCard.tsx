@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image, { ImageLoaderProps } from 'next/image';
 import { IMAGE_URL } from '../../util/constants';
-import { Tag } from '../common/Tag';
+import { Tag } from '../common/tag/Tag';
 import { TagBox } from './TagBox';
 
 type Props = {

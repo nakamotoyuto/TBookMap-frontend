@@ -1,6 +1,6 @@
 import React from 'react';
 import { BookItem } from '../../../pages/book/[id]';
-import { Tag } from '../common/Tag';
+import { Tag } from '../common/tag/Tag';
 import { Title } from '../common/Title';
 import { BookInfo } from '../molecules/BookInfo';
 import { TagBox } from '../molecules/TagBox';

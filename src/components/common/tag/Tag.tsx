@@ -2,14 +2,15 @@
 import React from 'react';
 
 type Props = {
-  name: string
+  name: string,
+  className?: string,
 }
 // tagコンポーネントに切り分ける。
 export const Tag = (props: Props) => {
-  const { name } = props;
+  const { name, className } = props;
   return (
     <div
-      className='
+      className={`
         text-xs
         inline-flex
         items-center
@@ -20,7 +21,10 @@ export const Tag = (props: Props) => {
         py-1
         bg-blue-200
         text-blue-700
-        rounded-full'
+        rounded-full
+        ${className}
+        `
+      }
       >
       {name}
     </div>
