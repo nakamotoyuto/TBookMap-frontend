@@ -7,10 +7,6 @@ import { Tag } from './Tag';
 export default {
   title: 'Example/Tag',
   component: Tag,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
 } as ComponentMeta<typeof Tag>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
