@@ -13,5 +13,5 @@ export const Email = Template.bind({})
 Email.args = {
   id: 'email',
   type: 'email',
-  placeholder: 'example@email.com'
+  placeholder: 'example@email.com',
 };

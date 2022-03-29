@@ -1,22 +1,11 @@
-import React, { HTMLInputTypeAttribute } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
+import React from 'react';
+import { ElementFrec } from '../../../../types/jsx';
 
-type Props = {
-  id: string,
-  regist: UseFormRegisterReturn,
-  type: HTMLInputTypeAttribute,
-  placeholder: string,
-}
-
-export const Input = (props: Props) => {
-  const {id, type, regist, placeholder} = props;
+export const Input: ElementFrec<"input"> = React.forwardRef((props, ref) => {
   return (
     <input
-      type={type}
-      id={id}
-      autoComplete={type}
-      placeholder={placeholder}
-      {...regist}
+      {...props}
+      ref={ref}
     />
   );
-};
+});
