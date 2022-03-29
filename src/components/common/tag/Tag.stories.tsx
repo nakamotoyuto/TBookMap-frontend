@@ -5,7 +5,7 @@ import { Tag } from './Tag';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Example/Tag',
+  title: 'common/tag/Tag',
   component: Tag,
 } as ComponentMeta<typeof Tag>;
 
