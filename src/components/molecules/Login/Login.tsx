@@ -10,54 +10,56 @@ import { ModalHeaderContent } from '../modalInner/ModalHeaderContent';
 import { ModalInputBox } from '../ModalInputBox';
 
 type Props = {
-  modalClose: VoidFunction
-}
+  modalClose: VoidFunction;
+};
 
 export const Login = (props: Props) => {
   const methods = useForm<LoginParams>();
-  const { formState: {errors} } = methods;
+  const {
+    formState: { errors },
+  } = methods;
   const [isLoading, onSubmit, error] = useLogin(methods, props.modalClose);
 
   return (
     <div className='p-4'>
-      <FormWrap<LoginParams> onSubmit={onSubmit} >
+      <FormWrap<LoginParams> onSubmit={onSubmit}>
         {({ register }) => (
           <>
-            <ModalHeaderContent modalHeader={'Sign in your account'} onClick={ props.modalClose}/>
-              <div>
-                <ModalInputBox>
-                <InputLabel forText="email" text="emailaddress" />
+            <ModalHeaderContent modalHeader={'Sign in your account'} onClick={props.modalClose} />
+            <div>
+              <ModalInputBox>
+                <InputLabel forText='email' text='emailaddress' />
                 <Input
                   id='email'
-                  type="email"
+                  type='email'
                   placeholder='メールアドレスを入力してください'
-                  {...register("email", {
-                      required: "メールアドレスは必須です。", pattern: {
-                        value: /^([a-zA-Z0-9])+([a-zA-Z0-9\._+-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/,
-                        message: "メールアドレスの形式が間違っています"
-                      }
+                  {...register('email', {
+                    required: 'メールアドレスは必須です。',
+                    pattern: {
+                      value:
+                        /^([a-zA-Z0-9])+([a-zA-Z0-9\._+-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/,
+                      message: 'メールアドレスの形式が間違っています',
+                    },
                   })}
                 />
-                </ModalInputBox>
-                <ModalInputBox>
-                  <InputLabel forText="password" text="passwords" />
-                  <Input
-                    id='password'
-                    type="password"
-                    placeholder='パスワードを入力してください'
-                    {...register("password",
-                      { required: true, pattern: /^[a-z\d]{2,100}$/i })
-                    }
-                  />
-                </ModalInputBox>
-              </div>
+              </ModalInputBox>
+              <ModalInputBox>
+                <InputLabel forText='password' text='passwords' />
+                <Input
+                  id='password'
+                  type='password'
+                  placeholder='パスワードを入力してください'
+                  {...register('password', { required: true, pattern: /^[a-z\d]{2,100}$/i })}
+                />
+              </ModalInputBox>
+            </div>
             <ModalFooterContent
               isLoading={isLoading}
               text={'ログイン'}
               modalClose={props.modalClose}
             />
-            </>
-          )}
+          </>
+        )}
       </FormWrap>
     </div>
   );

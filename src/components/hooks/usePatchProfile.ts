@@ -1,21 +1,21 @@
-import { useState } from "react";
-import { SubmitHandler } from "react-hook-form";
-import { LoginActions } from "../../store/user/user";
-import { UserUpdateParams } from "../../types/formParams";
-import { fetchPatch } from "../../util/fetch";
-import { tokenCheck } from "../../util/tokenCheck";
+import { useState } from 'react';
+import { SubmitHandler } from 'react-hook-form';
+import { LoginActions } from '../../store/user/user';
+import { UserUpdateParams } from '../../types/formParams';
+import { fetchPatch } from '../../util/fetch';
+import { useTokenCheck } from '../../util/useTokenCheck';
 
 export const usePatchProfile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const token = tokenCheck('/');
+  const token = useTokenCheck('/');
   const loginAction = LoginActions.useLoginUser();
 
   const updateUser = async (formData: UserUpdateParams, token: string) => {
     const data = {
       url: 'userInfo/update',
       token: token,
-      data: formData
+      data: formData,
     };
     const res = fetchPatch(data);
     return res;

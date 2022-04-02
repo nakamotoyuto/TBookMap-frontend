@@ -62,40 +62,56 @@ export const BookTag = [
   },
   {
     name: 'Next.js',
-  },{
+  },
+  {
     name: 'Vue.js',
-  },{
+  },
+  {
     name: 'Unity',
-  },{
+  },
+  {
     name: 'MongoDB',
-  },{
+  },
+  {
     name: 'Spring Boot',
-  },{
+  },
+  {
     name: 'JavaScript',
-  },{
+  },
+  {
     name: 'Node.js',
-  },{
+  },
+  {
     name: 'MySQL',
-  },{
+  },
+  {
     name: 'SQL',
-  },{
+  },
+  {
     name: 'DB',
-  },{
+  },
+  {
     name: 'Svelte',
-  },{
+  },
+  {
     name: 'Angular',
-  },{
+  },
+  {
     name: 'Django',
-  },{
+  },
+  {
     name: 'WordPress',
-  },{
+  },
+  {
     name: 'Flutter',
-  },{
+  },
+  {
     name: 'Firebase',
-  },{
+  },
+  {
     name: 'PostgreSQL',
   },
   {
     name: 'Oracle SQL',
-  }
+  },
 ] as const;

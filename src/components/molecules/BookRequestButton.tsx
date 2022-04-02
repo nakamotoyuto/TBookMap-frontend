@@ -7,7 +7,11 @@ export const BookRequestButton = () => {
   };
   return (
     <div>
-      <Button className='max-w-120 bg-main text-white' onClick={openRequestModal} text="本リクエスト"/>
+      <Button
+        className='max-w-120 bg-main text-white'
+        onClick={openRequestModal}
+        text='本リクエスト'
+      />
     </div>
   );
 };

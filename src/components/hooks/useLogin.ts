@@ -13,13 +13,13 @@ export const useLogin = (methods: UseFormReturn<LoginParams, object>, closeModal
   const loginAuth = async (formData: LoginParams) => {
     const data = {
       url: 'login',
-      data: formData
+      data: formData,
     };
     const res = await fetchPostNoAuth(data);
     return res;
   };
 
-  const onSubmit:SubmitHandler<LoginParams> = async (data) => {
+  const onSubmit: SubmitHandler<LoginParams> = async (data) => {
     setIsLoading(true);
     loginAuth(data)
       .then(function (response) {

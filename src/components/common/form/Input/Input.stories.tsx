@@ -1,5 +1,5 @@
-import { ComponentStory } from "@storybook/react";
-import { Input } from "./Input";
+import { ComponentStory } from '@storybook/react';
+import { Input } from './Input';
 
 export default {
   title: 'common/form/Input',

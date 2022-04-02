@@ -9,7 +9,7 @@ export const useLogout = () => {
   const logoutFetch = async (token: string) => {
     const data = {
       url: 'logout',
-      token: token
+      token: token,
     };
     const res = await fetchPostNoData(data);
     return res;

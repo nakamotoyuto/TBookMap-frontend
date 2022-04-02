@@ -1,10 +1,9 @@
-
 import React from 'react';
 
 type Props = {
-  name: string,
-  className?: string,
-}
+  name: string;
+  className?: string;
+};
 // tagコンポーネントに切り分ける。
 export const Tag = (props: Props) => {
   const { name, className } = props;
@@ -23,10 +22,9 @@ export const Tag = (props: Props) => {
         text-blue-700
         rounded-full
         ${className}
-        `
-      }
-      >
+        `}
+    >
       {name}
     </div>
-);
+  );
 };

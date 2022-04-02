@@ -19,5 +19,5 @@ Main.args = {
   text: 'Button',
   className: 'bg-main text-white',
   type: 'button',
-  onClick: () => console.log('buttonClickイベント')
+  onClick: () => console.log('buttonClickイベント'),
 };
