@@ -12,6 +12,6 @@ export const useGetBook = (path: string) => {
   return {
     book: data ? data.data : data,
     isLoading: !error && !data,
-    isError: error
+    isError: error,
   };
 };

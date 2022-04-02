@@ -4,7 +4,7 @@ import { Header } from '../src/components/organisms/Header';
 class MyDocument extends Document {
   render() {
     return (
-      <Html lang="ja">
+      <Html lang='ja'>
         <Head />
         <body>
           <Main />

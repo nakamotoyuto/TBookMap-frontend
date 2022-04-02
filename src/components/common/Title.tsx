@@ -1,16 +1,18 @@
 import React from 'react';
 
 type Props = {
-  title: string
-}
+  title: string;
+};
 
-export const Title = ({title}: Props ) => {
+export const Title = ({ title }: Props) => {
   return (
-    <h2 className='
+    <h2
+      className='
       text-2xl
       leading-tight
       font-bold
-    '>
+    '
+    >
       {title}
     </h2>
   );

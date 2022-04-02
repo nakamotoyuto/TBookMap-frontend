@@ -1,8 +1,8 @@
 import React from 'react';
 import { Login } from '../Login/Login';
 type Props = {
-  modalClose: VoidFunction
-}
+  modalClose: VoidFunction;
+};
 export const AuthContent = (props: Props) => {
   return (
     <div>

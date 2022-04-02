@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { LoginActions, userSelectors } from "../../store/user/user";
-import { fetchPostNoBody } from "../../util/fetch";
-import { User } from "../../types/user";
+import { LoginActions, userSelectors } from '../../store/user/user';
+import { fetchPostNoBody } from '../../util/fetch';
+import { User } from '../../types/user';
 
 type AuthReturnType = {
-  status: number
-  data: User
-}
+  status: number;
+  data: User;
+};
 
 export const useAuth = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -18,7 +18,7 @@ export const useAuth = () => {
   const auth = async (token: string) => {
     const data = {
       url: 'auth',
-      token: token
+      token: token,
     };
     const res = await fetchPostNoBody<AuthReturnType>(data);
     return res;
@@ -52,9 +52,7 @@ export const useAuth = () => {
       setIsError(true);
       setIsLoading(false);
     }
-    return (
-      setIsLoading(false)
-    );
+    return setIsLoading(false);
   }, []);
 
   return [isLoading, loginState, isError] as const;

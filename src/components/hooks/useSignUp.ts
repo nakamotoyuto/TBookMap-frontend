@@ -5,7 +5,10 @@ import { UseFormReturn } from 'react-hook-form';
 import { fetchPostNoAuth } from '../../util/fetch';
 import { LoginParams } from '../../types/formParams';
 
-export const useSignUp = (methods: UseFormReturn<LoginParams, object>, closeModal: VoidFunction) => {
+export const useSignUp = (
+  methods: UseFormReturn<LoginParams, object>,
+  closeModal: VoidFunction,
+) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const loginAction = LoginActions.useLoginUser();
@@ -13,7 +16,7 @@ export const useSignUp = (methods: UseFormReturn<LoginParams, object>, closeModa
   const signUpAuth = async (formData: LoginParams) => {
     const data = {
       url: 'signup',
-      data: formData
+      data: formData,
     };
     const res = await fetchPostNoAuth(data);
     return res;
