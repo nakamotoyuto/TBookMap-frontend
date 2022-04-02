@@ -1,7 +1,7 @@
-import React from 'react'
-import type { Book } from '../../../types/book'
-import { Category } from '../../molecules/Category'
-import { BookAll } from './components/BookAll'
+import React from 'react';
+import type { Book } from '../../../types/book';
+import { Category } from '../../molecules/Category';
+import { BookAll } from './components/BookAll';
 
 export const Top = ({ books }: { books: Book[] }) => {
   return (
@@ -9,5 +9,5 @@ export const Top = ({ books }: { books: Book[] }) => {
         <BookAll books={books}/>
         <Category />
       </div>
-  )
-}
+  );
+};

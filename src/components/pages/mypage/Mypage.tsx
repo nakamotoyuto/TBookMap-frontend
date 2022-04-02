@@ -1,6 +1,6 @@
-import React from 'react'
-import Auth from '../../layout/Auth'
-import { MypageForm } from './components/MypageForm'
+import React from 'react';
+import Auth from '../../layout/Auth';
+import { MypageForm } from './components/MypageForm';
 
 export const MypageComponent = () => {
   return (
@@ -9,5 +9,5 @@ export const MypageComponent = () => {
         <MypageForm />
       </div>
     </Auth>
-  )
-}
+  );
+};
