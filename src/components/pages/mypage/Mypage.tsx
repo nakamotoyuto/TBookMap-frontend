@@ -1,5 +1,9 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
-import Auth from '../../layout/Auth';
+const Auth = dynamic(
+  () => import('../../layout/Auth'),
+  { ssr: false }
+)
 import { MypageForm } from './components/MypageForm';
 
 export const MypageComponent = () => {
