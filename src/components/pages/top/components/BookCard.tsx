@@ -1,35 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
 import Image, { ImageLoaderProps } from 'next/image';
-import { IMAGE_URL } from '../../util/constants';
-import { Tag } from '../common/tag/Tag';
-import { TagBox } from './TagBox';
-
-type Props = {
-  image_url: string,
-  title: string,
-  id: number
-  bookTag: [
-    {
-      id: number,
-      tag: Tag
-    }
-  ]
-}
-
-type Tag = {
-  id: number,
-  name: string,
-  createdAt: string,
-  updatedAt: string
-}
+import { IMAGE_URL } from '../../../../util/constants';
+import { Tag } from '../../../common/tag/Tag';
+import { TagBox } from '../../../molecules/TagBox';
+import type { Book } from '../../../../types/book';
 
 const myLoader = ({ src, width, quality }:ImageLoaderProps) => {
   return `${IMAGE_URL}/${src}?w=${width}&q=${quality || 75}`;
 };
 
-export const BookCard = (props: Props) => {
-  const { image_url, bookTag, title, id } = props;
+export const BookCard = ({ book }: { book: Book }) => {
+  const { image_url, bookTag, title, id } = book;
   // TODO: cardcomponentで切り分ける
   return (
     <>

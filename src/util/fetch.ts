@@ -7,9 +7,9 @@ type FetchNoAuthData = { url: string, data: any }
 type FetchNoData = {url: string, token: string}
 type FetchGetNoAuth = string
 
-export const fetchGetNoAuth = async (data: FetchGetNoAuth) => {
+export const fetchGetNoAuth = async <T>(data: FetchGetNoAuth) => {
   const url = `${API_URL}${data}`;
-  const result = await axios(url, {
+  const result: AxiosResponse<T> = await axios(url, {
     method: 'GET'
   });
   return result;

@@ -1,15 +1,15 @@
 import React from "react";
 
-import { HistoryItem } from "../../enum/history";
-import { occupation } from "../../enum/occupation";
-import { UserUpdateParams } from "../../types/formParams";
-import { FormDefaultValueWrap } from "../common/form/FormWrap";
-import { InputDom } from "../common/form/InputDom";
-import { InputLabel } from "../common/InputLabel";
-import { Title } from "../common/Title";
-import { useMypage } from "../hooks/useMypage";
-import { usePatchProfile } from "../hooks/usePatchProfile";
-import { Button } from "../common/button/Button";
+import { HistoryItem } from "../../../../enum/history";
+import { occupation } from "../../../../enum/occupation";
+import { UserUpdateParams } from "../../../../types/formParams";
+import { FormDefaultValueWrap } from "../../../common/form/FormWrap";
+import { InputDom } from "../../../common/form/InputDom";
+import { InputLabel } from "../../../common/InputLabel";
+import { Title } from "../../../common/Title";
+import { useMypage } from "../../../hooks/useMypage";
+import { usePatchProfile } from "../../../hooks/usePatchProfile";
+import { Button } from "../../../common/button/Button";
 // Container層
 const MypageFormContainer = () => {
   const [isLoading, userData] = useMypage();
