@@ -5,6 +5,7 @@ import { Layout } from '../src/components/organisms/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
+    /* @ts-ignore RecoilRootにchildren: ReactNodeがつくまで */
     <RecoilRoot>
       <Layout>
         <Component {...pageProps} />
@@ -12,4 +13,5 @@ function MyApp({ Component, pageProps }: AppProps) {
     </RecoilRoot>
   );
 }
+
 export default MyApp;
