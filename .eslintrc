@@ -1,9 +1,12 @@
 {
-  "extends": ["next", "next/core-web-vitals","plugin:react/recommended",
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:@next/next/recommended",
-    "prettier"],
-  "plugins": ["import", "react", "jsx-a11y"],
+    "plugin:@next/next/recommended"
+  ],
+  "plugins": ["react", "jsx-a11y"],
   "rules": {
     // セミコロンない場合、エラー出力
     "semi": ["error", "always"],

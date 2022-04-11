@@ -5,7 +5,7 @@ import { Layout } from '../src/components/organisms/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    /* @ts-ignore RecoilRootにchildren: ReactNodeがつくまで */
+    /* @ts-ignore TODO: RecoilRootにchildren: ReactNodeがつくまで */
     <RecoilRoot>
       <Layout>
         <Component {...pageProps} />
